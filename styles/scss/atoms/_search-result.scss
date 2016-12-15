@@ -1,0 +1,40 @@
+// ==========================================================================
+// SEARCH RESULT
+// ==========================================================================
+/*doc
+---
+title: Search result
+name: 22_search_result
+category: atoms
+---
+
+A search result
+
+```html_example
+<section class="search-result">
+
+</section>
+```
+*/
+
+.search-result {
+    display: block;
+    width: 100%;
+    padding: rem-calc(20 0);
+    border-bottom: 1px solid palette(grey, light);
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.search-result__title {
+    margin-bottom: rem-calc(10);
+}
+
+.search-result__path {
+    @include font-family(type-config(headings-family));
+    @include font-scale(xxsmall, din);
+    color: palette(grey, mid);
+    display: block;
+    margin-bottom: rem-calc(10);
+}

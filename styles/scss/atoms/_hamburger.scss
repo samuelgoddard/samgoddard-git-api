@@ -1,0 +1,127 @@
+// ==========================================================================
+// OPEN-CLOSE
+// ==========================================================================
+/*doc
+---
+title: Hamburger
+name: 9_hamburger
+category: atoms
+---
+
+The hamburger button is a CSS3 menu item with a text fallback:
+
+```html_example
+<button class="hamburger">
+    <span>Menu</span>
+</button>
+```
+*/
+
+$_hamburger-color: white;
+$_hamburger-hover-color: white;
+$_hamburger-bar-width: 1;
+
+.hamburger {
+    @include text-replace;
+    position: relative;
+    display: block;
+    width: rem-calc(17);
+    height: rem-calc(13);
+    margin: 0 auto;
+
+    cursor: pointer;
+
+    background-color: transparent;
+    border: 0;
+    border-bottom: rem-calc($_hamburger-bar-width) solid $_hamburger-color; // bottom bar in the menu
+    border-top: rem-calc($_hamburger-bar-width) solid $_hamburger-color; // top bar in the menu
+
+    transition: border-color 200ms ease-out;
+
+    outline: none;
+
+    // pseudo elements make up the 'X' when open and the middle line when closed
+    &::after,
+    &::before {
+        border-bottom: rem-calc($_hamburger-bar-width) solid $_hamburger-color;
+        top: 50%;
+        margin-top: rem-calc(- ($_hamburger-bar-width /2));
+        content: '';
+        height: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        transition: border-color 200ms ease-out, transform 200ms ease-out;
+    }
+
+    @include link-hover {
+        &,
+        &::after,
+        &::before {
+            border-color: $_hamburger-hover-color;
+        }
+    }
+}
+/*doc
+---
+title: Active state
+name: 9_hamburger_active
+category: atoms
+parent: 9_hamburger
+---
+
+The active state is activated when a user clicks on the element and a `.is--active` class is added to the button:
+
+```html_example
+<button class="hamburger is--active">
+    <span>Menu</span>
+</button>
+```
+*/
+.is--active > .hamburger,
+.hamburger.is--active  {
+    border-color: transparent; // hides the top and bottom lines
+
+    // Rotates pseudo elements from the center to make up an 'X' symbol
+    &::after {
+        transform: rotateZ(45deg);
+    }
+
+    &::before {
+        transform: rotateZ(-45deg);
+    }
+}
+
+
+/*doc
+---
+title: Hamburger colors
+name: 9_hamburger_colours
+category: atoms
+parent: 9_hamburger
+---
+
+Also available in pink
+
+```html_example
+<button class="hamburger hamburger--pink">
+    <span>Menu</span>
+</button>
+```
+*/
+
+.hamburger--pink {
+    border-color: palette(pink);
+
+    &:before, &:after {
+        border-color: palette(pink);
+    }
+
+    @include link-hover {
+        &,
+        &::after,
+        &::before {
+            border-color: #cd1370;
+        }
+    }
+}

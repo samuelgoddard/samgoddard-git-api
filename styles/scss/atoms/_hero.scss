@@ -1,0 +1,86 @@
+// ==========================================================================
+// HERO ATOM
+// ==========================================================================
+/*doc
+---
+title: Heroes
+name: 14_heroes
+category: atoms
+---
+
+Styles for hero banners. Internal padding should be set using cell classes
+
+```html_example
+<div class="hero">
+    <div class="hero__content">
+        <h1 class="cell-t50 cell-b30
+                   cell-t60--medium cell-b50--medium
+                   cell-t70--large cell-b60--large">Courses &amp; apprenticeships</h1>
+    </div>
+</div>
+```
+*/
+
+
+.hero {
+    position: relative;
+    width: 100%;
+}
+
+.hero__content {
+    @include trim();
+    @extend .island;
+    @extend .island--xlight;
+    @extend .slant;
+    @extend .rule;
+    @extend .rule--top;
+    @extend .rule--light;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    
+    .hero--image & {
+        margin-bottom: 0;
+    }
+}
+
+
+/*doc
+---
+title: Heroes with images / videos
+name: 14_heroes_images
+category: atoms
+parent: 14_heroes
+---
+
+Heroes with images use a `.hero__img` element
+
+
+```html_example
+<div class="hero">
+    <div class="hero__content">
+        <h1 class="h--wrapped
+                    cell-t50 cell-b30
+                    cell-t60--medium cell-b50--medium
+                    cell-t70--large cell-b60--large">Courses &amp; apprenticeships</h1>
+    </div>
+    <img class="hero__img" src="https://unsplash.it/1280/400">
+</div>
+```
+*/
+
+.hero__img {
+    position: relative;
+    z-index: 1;
+    margin-top: rem-calc(-$_slant_size);
+    width: 100%;
+    overflow: hidden; // for hero carousel
+
+    @include respond-to(medium) {
+        margin-top: rem-calc(-$_slant_sizeM);
+    }
+
+    @include respond-to(large) {
+        margin-top: rem-calc(-$_slant_sizeL);
+    }
+}

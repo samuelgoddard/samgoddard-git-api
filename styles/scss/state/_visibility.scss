@@ -1,0 +1,125 @@
+// ==========================================================================
+// HIDE + VISIBLE
+// ==========================================================================
+/*doc
+---
+title: Hide and visible
+name: 9_hide_visible
+category: utilities
+---
+
+`.is--hidden` sets `display: none` on an element:
+
+```html_example
+<p class="is--hidden">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis recusandae minus deleniti, ad fugiat pariatur inventore soluta distinctio. Ea ducimus amet totam ullam, ipsam dicta itaque eaque voluptatum. Quos, quae.</p>
+<p class="is--js-hidden">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis recusandae minus deleniti, ad fugiat pariatur inventore soluta distinctio. Ea ducimus amet totam ullam, ipsam dicta itaque eaque voluptatum. Quos, quae.</p>
+<p class="is--no-js-hidden">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis recusandae minus deleniti, ad fugiat pariatur inventore soluta distinctio. Ea ducimus amet totam ullam, ipsam dicta itaque eaque voluptatum. Quos, quae.</p>
+```
+*/
+
+.js, // wrapping classes required to match specificity of [1]
+.no-js {
+    .is--hidden {
+        display: none;
+    }
+}
+
+.js  {
+    .is--js-hidden {
+        display: none;
+    }
+}
+
+.no-js {
+    .is--no-js-hidden {
+        display: none; // [1]
+    }
+}
+
+.js-loaded  {
+    .is--js-loaded-visible {
+        display: block;
+    }
+}
+
+.no-js {
+    .is--no-js-visible {
+        display: block;
+    }
+}
+
+/*doc
+---
+title: Responsive hide
+name: 9_hide_visible_responsive
+category: utilities
+parent: 9_hide_visible
+---
+
+It’s also possible to set hidden/visible on various breakpoints like so:
+
+```html_example
+<p class="is--hidden--large" style="background-color: yellow;">This text will be hidden on the large breakpoint, but visible medium and below</p>
+<p class="is--hidden--medium is--visible--large" style="background-color: green;">This text will be hidden on medium breakpoints but visible on larger viewport sizes.</p>
+<p class="is--hidden is--visible--xlarge" style="background-color: red;">This text is only visible on the largest viewport</p>
+```
+*/
+
+.js, // wrapping classes required to match specificity of [1]
+.no-js {
+    @each $bp, $config in global-config('grids') {
+        @if map-get($config, width) {
+            @include respond-to($bp) {
+                .is--hidden--#{$bp} {
+                    display: none;
+                }
+                .is--visible--#{$bp} {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+@each $bp, $config in global-config('grids') {
+    @if map-get($config, width) {
+        @include respond-to($bp) {
+            .js {
+                .is--js-hidden--#{$bp} {
+                    display: none;
+                }
+                .is--js-visible--#{$bp} {
+                    display: block;
+                }
+            }
+            .no-js {
+                .is--no-js-hidden--#{$bp} {
+                    display: none;
+                }
+                .is--no-js-visible--#{$bp} {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+
+.js,
+.no-js {
+    .is--inline-block--medium {
+        @include respond-to(medium) {
+            display: inline-block;
+        }
+    }
+
+    @include respond-to(large) {
+        .is--table-group--large {
+            display: table-row-group;
+        }
+        .is--inline--large {
+            display: inline;
+        }
+    }
+}
+

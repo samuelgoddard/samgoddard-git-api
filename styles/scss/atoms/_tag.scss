@@ -1,0 +1,60 @@
+// ==========================================================================
+// TAG ATOM
+// ==========================================================================
+/*doc
+---
+title: Tags
+name: 14_tags
+category: atoms
+---
+
+Lists of tags can use pretty much any markup
+
+
+```html_example
+<nav class="tags">
+    <a href="#" class="tag">Creative</a>
+    <a href="#" class="tag">Painting</a>
+</nav>
+```
+
+```html_example
+<ul class="tags">
+    <li class="tag">Creative</li>
+    <li class="tag">Painting</li>
+</ul>
+```
+
+```html_example
+<div class="tags">
+    <b class="tag">Creative</b>
+    <b class="tag">Painting</b>
+</div>
+```
+*/
+
+.tags {
+    @include font-family(type-config(headings-family));
+    @include font-scale(xxsmall, din);
+    margin-bottom: 0;
+}
+
+.tag {
+    color: black;
+    display: inline-block;
+    background-color: palette(grey, light);
+    @include font-weight(regular);
+    margin: rem-calc(0 5 5 0);
+    transition: background-color 200ms;
+    padding: rem-calc(5 7 3 7);
+}
+
+a.tag {
+    @include link {
+        @extend .link--plain;
+    }
+
+    @include link-hover {
+        background-color: palette(grey);
+    }
+}

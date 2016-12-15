@@ -1,0 +1,193 @@
+// ==========================================================================
+// RULE
+// ==========================================================================
+
+$rule-default-width: 1px !default;
+$rule-thick-width: 3px !default;
+
+$_rule-sides: (top, right, bottom, left);
+
+/*doc
+---
+title: Rules
+name: 8_rules
+category: atoms
+---
+
+`.rule` adds a 1px border to an element. The borders default to grey, and are triggered by
+applying one or more modifier classes: `.rule--top`, `.rule--right`, `.rule--bottom`,
+ `.rule--left` etc. Does not pad elements, so combine with [cell][3_cell] as required.
+
+```html_example
+<div class="rule rule--top">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+</div>
+<div class="rule rule--left">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+</div>
+<div class="rule rule--bottom">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+</div>
+<div class="rule rule--right">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+</div>
+```
+
+*/
+
+.rule {
+    border-color: palette(grey);
+    border-style: solid;
+    border-width: 0;
+}
+
+@each $side in $_rule-sides {
+    @each $bp, $config in global-config('grids') {
+
+    $width:             map-get($config, width);
+    $selector-suffix:   if($bp == 'base', '', '--#{$bp}');
+
+    @include conditional-respond-to($bp, $width) {
+        .rule--#{$side}#{$selector-suffix} {
+            border-#{$side}-width: $rule-default-width;
+        }
+    }
+}
+}
+
+
+
+
+
+
+/*doc
+---
+title: All
+name: 8_rules_all
+parent: 8_rules
+---
+
+Set a border on all sides with `.rule--all`
+
+```html_example
+<div class="rule rule--all">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+</div>
+```
+
+*/
+
+.rule--all {
+    @include trim();
+    border-width: $rule-default-width;
+    & + & {
+        border-top: none;
+    }
+}
+
+
+/*doc
+---
+title: None
+name: 8_rules_none
+parent: 8_rules
+---
+
+Remove a border on all sides with `.rule--none` (useful for overrides)
+
+```html_example
+<div class="rule rule--bottom">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+</div>
+<div class="rule rule--bottom rule--none">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+</div>
+```
+
+*/
+
+.rule--none {
+    border: none;
+}
+
+.rule--none--medium {
+    @include respond-to(medium) {
+        border: none;
+    }
+}
+
+
+/*doc
+---
+title: Not first
+name: 8_rules_not_first
+parent: 8_rules
+---
+
+Remove a border if this is the first child of a container `.rule--top--not-first` (useful when output order is not known in advance)
+
+```html_example
+<div class="rule rule--top--not-first">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+</div>
+<div class="rule rule--top--not-first">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+</div>
+```
+
+*/
+
+.rule--top--not-first {
+    @extend .rule--top;
+    &:first-child {
+        border-top: none;
+    }
+}
+
+
+
+/*doc
+---
+title: Color modifiers
+name: 8_rules_colors
+parent: 8_rules
+---
+
+Colour modifiers are automatically generated for every colour in the palette.
+
+```html_example
+<div class="rule rule--dark rule--top rule--bottom">
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p>
+</div>
+```
+*/
+
+// @TODO Remove output of plain .rule- class
+@each $color, $shades in global-config('palettes') {
+    $colorName: if($color == 'grey', '', '--#{$color}');
+    @each $shade, $value in $shades {
+
+        $shadeModifier: if($shade == 'base', '', '--#{$shade}');
+        .rule#{$colorName}#{$shadeModifier} {
+            border-color: palette($color, $shade);
+        }
+    }
+}
+
+.rule--white {
+    border-color: white;
+}
+
+.rule--black {
+    border-color: black;
+}

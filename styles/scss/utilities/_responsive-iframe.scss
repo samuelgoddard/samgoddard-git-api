@@ -1,0 +1,55 @@
+// ==========================================================================
+//  RESPONSIVE IFRAME
+// ==========================================================================
+//
+
+/*doc
+---
+title: Responsive iframe
+name: responsive-iframe
+category: utilities
+---
+
+Force the aspect ratio of an iframe. Useful for maps. Defaults to a 1:1 ratio, but also
+available in 4:3, 3:2 and 2:1 flavours with:
+
+* `.u-responsive-iframe--4-to-3`
+* `.u-responsive-iframe--3-to-2`
+* `.u-responsive-iframe--2-to-1`
+* `.u-responsive-iframe--1-to-1`
+
+```html_example
+<div class="u-responsive-iframe">
+    <iframe width="540" height="405" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+    src="https://maps.google.com/maps?hl=es;z=14&amp;output=embed"></iframe>
+</div>
+```
+
+*/
+
+.u-responsive-iframe {
+    position: relative;
+    padding-bottom: 100%; // This is the aspect ratio
+    height: 0;
+    overflow: hidden;
+    > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+
+.u-responsive-iframe--4-to-3 {
+    padding-bottom: 75%;
+}
+
+.u-responsive-iframe--3-to-2 {
+    padding-bottom: 66.66%;
+}
+
+.u-responsive-iframe--2-to-1 {
+    padding-bottom: 50%;
+}

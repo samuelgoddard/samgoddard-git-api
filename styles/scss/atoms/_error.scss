@@ -1,0 +1,26 @@
+// ==========================================================================
+// ERRORS
+// ==========================================================================
+
+
+.error {
+    @extend .label;
+    background-color: palette(error);
+    color: white;
+    @include font-weight(bold);
+    padding: rem-calc(7 10 5);
+    border-radius: rem-calc(2);
+
+    .is--radioGroup &,
+    .is--checkbox &,
+    .is--checkboxGroup & {
+        margin-top: rem-calc(5);
+    }
+
+    .is--select &,
+    .is--text &,
+    .is--textarea &,
+    .is--date & {
+        border-radius: rem-calc(0 0 2 2);
+    }
+}

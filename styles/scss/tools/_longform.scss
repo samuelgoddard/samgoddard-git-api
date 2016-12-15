@@ -1,0 +1,42 @@
+// ==========================================================================
+// LONGFORM TOOL
+// ==========================================================================
+//
+//
+// Increases the readability of text elements within this wrapper.
+//
+// Example:
+//
+// section.main {
+//    @include longform();
+// }
+//
+
+
+@mixin longform() {
+    color: palette(grey, dark);
+
+    img {
+        margin-top: rem-calc(global-config(base-unit) * 2);
+        margin-bottom: rem-calc(global-config(base-unit) * 2);
+    }
+
+    > * + h4,
+    > * + .h4 {
+        margin-top: rem-calc(global-config(base-unit) * 1.5);
+    }
+
+    > * + h5,
+    > * + .h5 {
+        margin-top: rem-calc(global-config(base-unit) * 2.5);
+    }
+
+    // other modules can be added into longform and so we only want links to
+    // have underlines if they are directly descendent of the parent.
+    & > a,
+    & > p > a,
+    & > ul > li > a,
+    & > ol > li > a {
+         @include underline(palette(grey));
+    }
+}

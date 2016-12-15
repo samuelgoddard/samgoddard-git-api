@@ -1,0 +1,130 @@
+// ==========================================================================
+// NAV
+// ==========================================================================
+//
+
+/*doc
+---
+title: Nav
+name: 7_nav
+category: atoms
+---
+
+The `.nav` atom horizontally aligns child items so by default the children are `dislay: inline-block`.
+
+This pattern is typically used for a series of links.
+
+```html_example
+<nav class="nav">
+    <a href="#" class="nav__item">Item 1</a>
+    <a href="#" class="nav__item">Item 2</a>
+    <a href="#" class="nav__item">Item 3</a>
+</nav>
+```
+
+This pattern can be combined with buttons and text as well:
+
+```html_example
+<div class="nav">
+    <div class="nav__item">Show me:</div>
+    <a href="#" class="nav__item btn--fill btn--small">Item 1</a>
+    <a href="#" class="nav__item btn btn--small">Item 2</a>
+    <a href="#" class="nav__item btn btn--small">Item 3</a>
+</div>
+```
+
+The `.is--active` class is used to show which item is the active one:
+
+```html_example
+<div class="nav">
+    <a href="#" class="nav__item is--active">Item 1</a>
+    <a href="#" class="nav__item">Item 2</a>
+    <a href="#" class="nav__item">Item 3</a>
+</div>
+```
+
+*/
+
+.nav {
+    @include clearfix;
+}
+
+.nav__item {
+    &,
+    > a {
+        @extend .link--plain;
+    }
+
+    display: inline-block;
+    padding: rem-calc(20 9 18);
+    cursor: pointer;
+
+    &.is--active {
+        @include link {
+            color: palette(pink);   
+        }
+    }
+}
+
+.nav__item--right {
+    float: right;
+    padding-right: 0;
+}
+
+
+/*doc
+---
+title: Stacked
+name: 7_nav_block
+category: atoms
+parent: 7_nav
+---
+
+The `.nav--block` modifier sets children to stack vertically
+
+```html_example
+<nav class="nav nav--block">
+    <a href="#" class="nav__item">Item 1</a>
+    <a href="#" class="nav__item">Item 2</a>
+    <a href="#" class="nav__item">Item 3</a>
+</nav>
+```
+
+*/
+
+.nav--block {
+    .nav__item {
+        display: block;
+    }
+}
+
+
+/*doc
+---
+title: Small
+name: 7_nav_small
+category: atoms
+parent: 7_nav
+---
+
+`.nav--small` has smaller text
+
+```html_example
+<nav class="nav nav--small">
+    <a href="#" class="nav__item">Item 1</a>
+    <a href="#" class="nav__item">Item 2</a>
+    <a href="#" class="nav__item">Item 3</a>
+</nav>
+```
+
+*/
+
+
+.nav--small {
+    @include font-scale(xxsmall, din);
+
+    .nav__item {
+        padding-top: rem-calc(10);
+        padding-bottom: rem-calc(10);   
+    }
+}

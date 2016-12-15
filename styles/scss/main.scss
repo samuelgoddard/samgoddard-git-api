@@ -3,13 +3,14 @@
  */
 
 // Config files
-@import "modules/config";
+@import "config/config";
 
 // Partials files
-@import "partials/reset";
-@import "partials/grid";
-@import "partials/colors";
-@import "partials/buttons";
-@import "partials/typography";
-@import "partials/padding";
-@import "partials/displays";
+@import "reset";
+@import "layout/grid";
+@import "utilities/colors";
+@import "molecules/buttons";
+@import "molecules/typography";
+@import "utilities/padding";
+@import "utilities/displays";
+@import "molecules/cards";

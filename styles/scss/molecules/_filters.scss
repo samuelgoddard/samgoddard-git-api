@@ -1,0 +1,46 @@
+// ==========================================================================
+// FILTERS MOLECULE
+// ==========================================================================
+/*doc
+---
+title: Filters
+name: 90_filters
+category: forms
+---
+
+```html_example
+<form class="m-filters">
+    <fieldset>
+        <legend>Search Keywords</legend>
+        <div class="control">
+            <label class="label is--hidden" for="s">Enter keywords</label>
+            <input class="input" id="s" placeholder="Start typing...">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Course level</legend>
+        <label class="label" for="course_level">Use our level explainer to easily compare different qualifications.</label>
+        <input type="text" value="all" id="course_level" data-slider>
+    </fieldset>
+
+    <fieldset>
+        <legend>Course Type</legend>
+
+        <input type="checkbox" class="checkbox checkbox--filter" value="Further Education" id="filter_fe">
+        <label for="filter_fe" class="label label--inline">Further Education</label>
+        <br>
+
+        <input type="checkbox" class="checkbox checkbox--filter" value="Higher Education" id="filter_he">
+        <label for="filter_he" class="label label--inline">Higher Education</label>
+        <br>
+
+        <input type="checkbox" checked class="checkbox checkbox--filter" value="Apprenticeship" id="filter_apprenticeship">
+        <label for="filter_apprenticeship" class="label label--inline">Apprenticeship</label>
+
+    </fieldset>
+
+    <input type="reset" value="Clear Filters" class="btn btn--outline btn--pink">
+</form>
+```
+*/

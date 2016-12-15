@@ -1,0 +1,109 @@
+// ==========================================================================
+// PIN
+// ==========================================================================
+// #ABSTRACT
+/*doc
+---
+title: Pin
+name: 1_pin
+category: atoms
+---
+
+The `.u-pin` util sets an element to be absolutely pinned into one of the four corners of its parent. For now there is only a single modifier `.u-pin__item--top-right` which moves the item into the top right corner.
+
+```html_example
+<div class="pin" style="height: 400px; background-color: #ddd;">
+    <div class="pin__item pin__item--top-right" style="background-color: #aaa;">Close</div>
+</div>
+```
+
+*/
+
+$_pin-spacings: (0, 5, 10);
+
+// The parent element
+.u-pin {
+    position: relative;
+}
+
+// The item to be pinned
+.u-pin__item {
+    position: absolute;
+}
+
+
+// .u-pin__item\@medium {
+//     @include respond-to("medium"){
+//         position: absolute;
+//     }
+// }
+
+// .u-pin__item\@large {
+//     @include respond-to("large"){
+//         position: absolute;
+//     }
+// }
+
+// .u-pin__item\@xlarge {
+//     @include respond-to("xlarge"){
+//         position: absolute;
+//     }
+// }
+
+.u-pin__item--t {
+    top: 0;
+}
+
+.u-pin__item--r {
+    right: 0;
+}
+
+.u-pin__item--b {
+    bottom: 0;
+}
+
+.u-pin__item--l{
+    left: 0;
+}
+
+@each $spacing in $_pin-spacings {
+    .u-pin__item--t#{$spacing} {
+        top: rem-calc($spacing);
+    }
+    .u-pin__item--r#{$spacing} {
+        right: rem-calc($spacing);
+    }
+    .u-pin__item--b#{$spacing} {
+        bottom: rem-calc($spacing);
+    }
+    .u-pin__item--l#{$spacing} {
+        left: rem-calc($spacing);
+    }
+}
+
+
+/*doc
+---
+title: Fill modifier
+name: 1_pin_fill
+parent: 1_pin
+---
+
+This absolutely positions an element into every corner of its parent.
+
+```html_example
+<div class="pin" style="height: 400px; background-color: red;">
+    <div class="pin__item pin__item--full" style="background-color: #aaa;">Close</div>
+</div>
+```
+
+*/
+
+// .u-pin__item--full {
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     width: 100%;
+//     height: 100%;
+// }

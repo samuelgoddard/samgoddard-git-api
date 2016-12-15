@@ -1,0 +1,32 @@
+// ==========================================================================
+// CIRCLE
+// ==========================================================================
+/*doc
+---
+title: Circle
+name: 11_circle
+category: utilities
+---
+
+This class creates a circle over an image by using the `border-radius` property.
+
+```html_example
+<figure class="u-circle">
+    <img src="http://placehold.it/500x500">
+</figure>
+<figure class="u-circle">
+    <img src="http://placehold.it/100x100">
+</figure>
+```
+
+*/
+
+@mixin circle(){
+    overflow: hidden;
+    width: auto;
+    border-radius: 100%;
+}
+
+.u-circle {
+    @include circle();
+}

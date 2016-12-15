@@ -1,0 +1,16 @@
+// SHAME JS toggle styles
+//
+
+
+.toggle {
+    position: relative;
+}
+
+.toggle__icon {
+    position: absolute;
+    right: rem-calc(15);
+    transition: all 250ms;
+    .toggle-target-is--in & {
+        transform: rotate(180deg);
+    }
+}

@@ -1,0 +1,102 @@
+// ==========================================================================
+// PAGINATION
+// ==========================================================================
+/*doc
+---
+title: Pagination
+name: 1_pagination
+category: atoms
+---
+
+__Dependencies__
+
+[icon](icons.html), [visibility](utilities.html#9_hide_visible)
+
+Pagination styles are used to help users figure out which page they are currently on.
+
+```html_example
+<nav class="pagination">
+    <a href="#" aria-label="Previous" class="pagination__item pagination__item--pager pagination__item--inactive">
+        <b class="icon icon--laquo icon--white icon--10" data-grunticon-embed>Previous page</b>
+    </a>
+    <a class="pagination__item pagination__item--active" href="#">1</a>
+    <a href="#" class="pagination__item">2</a>
+    <a href="#" class="pagination__item">3</a>
+    <a href="#" class="pagination__item">4</a>
+    <a href="#" class="pagination__item">5</a>
+    <span class="pagination__item pagination__item--divider">&hellip;</span>
+    <a href="#" class="pagination__item">14</a>
+    <a href="#" aria-label="Next" class="pagination__item pagination__item--pager">
+        <b class="icon icon--raquo icon--white icon--10" data-grunticon-embed>Next page</b>
+    </a>
+</nav>
+```
+
+*/
+
+.pagination {
+    @include font-family(type-config(headings-family));
+    @include font-weight(regular);
+    @include font-scale(small);
+    text-align: center;
+    position: relative;
+}
+
+.pagination__item {
+    @extend .link--plain;
+    display: inline-block;
+    margin-right: rem-calc(5);
+    width: rem-calc(30);
+    height: rem-calc(30);
+    text-align: center;
+    color: black;
+    border-radius: rem-calc(30);
+    transition: background-color 200ms ease, color 200ms ease;
+    line-height: rem-calc(33);
+
+    @include link-hover() {
+        background-color: palette(grey, light);
+    }
+}
+
+.pagination__item--active {
+    background-color: palette(pink);
+    color: white;
+
+    @include link-hover() {
+        background-color: palette(pink);
+        color: white;
+    }
+}
+
+.pagination__item--divider {
+    @include link-hover() {
+        background-color: initial;
+    }
+}
+
+.pagination__item--pager {
+    background-color: black;
+    color: white;
+    position: absolute;
+    right: 0;
+    line-height: rem-calc(32); // slight tweak
+
+    &:first-child {
+        left: 0;
+    }
+
+    @include link-hover() {
+        background-color: palette(pink);    
+    }
+}
+
+.pagination__item--inactive {
+    cursor: not-allowed;
+    background-color: palette(grey, light);
+    color: palette(grey);
+
+    @include link-hover() {
+        background-color: palette(grey, light);  
+    }
+}

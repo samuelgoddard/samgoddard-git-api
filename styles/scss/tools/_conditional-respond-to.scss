@@ -1,0 +1,16 @@
+// ==========================================================================
+// CONDITIONAL RESPOND TO TOOL
+// ==========================================================================
+//
+//
+
+@mixin conditional-respond-to($bp, $condition:false) {
+    @if $condition {
+        @include respond-to($bp) {
+            @content;
+        }
+    }
+    @else {
+        @content;
+    }
+}

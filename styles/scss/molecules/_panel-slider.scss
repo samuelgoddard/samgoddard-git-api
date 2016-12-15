@@ -1,0 +1,98 @@
+// ==========================================================================
+// PANEL SLIDER
+// ==========================================================================
+
+$_panel-width: 255;
+$_panel-count: 4;
+$_track-width: ($_panel-width * $_panel-count);
+$_track-breakpoint: $_track-width + 40; // width of track + wrapper padding
+
+.m-panel-slider {
+    overflow: auto;
+    position: relative;
+
+    .js & {
+        overflow: hidden;
+    }
+}
+
+
+.m-panel-slider__track {
+    width: rem-calc($_track-width);
+    position: relative;
+
+    @include breakpoint(rem-calc($_track-breakpoint)) {
+        width: 100%;
+    }
+}
+
+
+.m-panel-slider__item {
+    width: rem-calc($_panel-width);
+    max-width: none;
+    float: left;
+    padding-right: rem-calc(20);
+    padding-left: rem-calc(20);
+    padding-bottom: rem-calc(80);
+    border-left: 1px solid palette(grey, xlight);
+
+    .m-text-panel {
+        max-width: none;
+    }
+
+    &:first-child {
+        padding-left: 0;
+        border-left: none;
+    }
+
+    @include breakpoint(rem-calc($_track-breakpoint)) {
+        width: 25%;
+    }
+}
+
+.m-panel-slider__item--featured {
+    @include breakpoint(rem-calc($_track-breakpoint)) {
+        float: right;
+
+        &:first-child {
+            padding-left: rem-calc(20);
+            border-left: 1px solid palette(grey, xlight);
+        }
+
+        & + .m-panel-slider__item {
+            padding-left: 0;
+            border-left: none;
+        }
+    }
+}
+
+.m-panel-slider__nav {
+    position: absolute;
+    bottom: rem-calc(25);
+    left: rem-calc(20);
+
+    @include breakpoint(rem-calc($_track-breakpoint)) {
+        display: none;
+    }
+
+    > a {
+        @extend .link--plain;
+        background-color: black;
+        border-radius: 50%;
+        width: rem-calc(30);
+        height: rem-calc(30);
+        display: inline-block;
+        text-align: center;
+        margin-right: rem-calc(5);
+
+        @include link-hover {
+            background-color: palette(pink);
+        }
+
+        &.is--disabled {
+            cursor: not-allowed;
+            background-color: palette(grey, light);
+        }
+    }
+}
+

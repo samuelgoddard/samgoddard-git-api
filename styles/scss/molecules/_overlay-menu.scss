@@ -1,0 +1,36 @@
+.m-overlay-menu {
+    position: fixed;
+    z-index: 10;
+
+    padding-top: rem-calc(20);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    background-color: white;
+
+    &--outer {
+        top: rem-calc(47);
+        position: fixed;
+    }
+}
+
+.m-overlay-menu__pinned-item {
+    position: fixed;
+    bottom: 0;
+}
+
+
+.slideover-transition {
+  transition: transform .3s ease;
+  transform: translateX(0);
+}
+
+// .expand-enter defines the starting state for entering
+// .expand-leave defines the ending state for leaving
+//
+.slideover-enter,
+.slideover-leave {
+    transform: translateX(100%);
+}

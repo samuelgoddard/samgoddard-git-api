@@ -1,0 +1,19 @@
+// ==========================================================================
+// QUICKLINKS
+// ==========================================================================
+
+.m-quicklinks {
+    
+}
+
+.m-quicklinks__item {
+    @include respond-to(medium) {
+        padding-left: 0;
+        padding-right: rem-calc(30);
+
+        .icon {
+            right: 0;
+        } 
+    }
+}
+

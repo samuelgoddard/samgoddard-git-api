@@ -1,0 +1,33 @@
+// ==========================================================================
+// Text size
+// ==========================================================================
+/*doc
+---
+title: Text size
+name: 10_size_text
+category: utilities
+---
+
+Generic text size helpers
+
+```html_example
+<p class="u-text-size--xxlarge">XX Large</p>
+<p class="u-text-size--xlarge">X Large</p>
+<p class="u-text-size--large">Large</p>
+<p class="u-text-size--mid">Mid</p>
+<p class="u-text-size--base">Base</p>
+<p class="u-text-size--small">Small</p>
+<p class="u-text-size--xsmall">X Small</p>
+
+```
+*/
+
+@each $name, $values in map-get(type-config(sizes), default) {
+    @if type-of($values) == "map" {
+        @if map-has-key($values, font-size) {
+            .u-text-size--#{$name} {
+                font-size: calc-font-size($name) !important;
+            }
+        }
+    }
+}

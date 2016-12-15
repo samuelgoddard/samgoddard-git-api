@@ -1,0 +1,95 @@
+// ==========================================================================
+// LINKS ATOM
+// ==========================================================================
+//
+//
+
+/*doc
+---
+title: Links
+name: 4_links
+category: atoms
+---
+
+Use a plain anchor, or apply within a block link using `.link--fake`
+
+```html_example
+    <a href="#">A plain link</a>
+```
+
+
+```html_example
+    <a href="#" class="link--block">
+        <h1>title</h1>
+        <span class="link--fake">Fake link</span>
+    </a>
+```
+*/
+a,
+.link--fake {
+    color: palette(pink);
+    text-decoration: none;
+    @include underline(transparentize(palette(pink), 0.6));
+
+    @include link-hover() {
+        @include underline(palette(pink));
+    }
+}
+
+a.u-text-color--black {
+    @include underline(transparentize(black, 0.4));
+
+    @include link-hover() {
+        @include underline(black);
+    }
+}
+
+
+
+/*doc
+---
+title: Block links
+name: 4_links_block
+parent: 4_links
+---
+
+Use `.link--block` to force block level links
+
+```html_example
+    <a href="#" class="link--block">A block level link</a>
+```
+
+*/
+
+.link--block {
+    display: block;
+}
+
+/*doc
+---
+title: Plain links
+name: 4_links_plain
+parent: 4_links
+---
+
+Use `.link--plain` for links where you don't want default link styles
+
+```html_example
+    <a href="#" class="link--plain">A plain link</a>
+```
+
+*/
+
+@mixin link-plain() {
+    color: currentColor;
+    background-image: none;
+    text-decoration: none !important;
+
+    @include link-hover {
+        background-image: none;
+    }
+}
+
+.link--plain {
+    @include link-plain();
+}

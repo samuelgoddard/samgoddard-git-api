@@ -1,0 +1,287 @@
+// ==========================================================================
+// MEDIA OBJECT
+// ==========================================================================
+
+/*doc
+---
+title: Media
+name: 1_media
+category: atoms
+---
+
+The `.media` object consists of an image and block of text.
+
+Any padding should be added using cell classes.
+
+```html_example
+<div class="media">
+    <figure class="media__img">
+        <img src="http://placehold.it/1000x500" alt="a description of the image">
+    </figure>
+    <div class="media__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+</div>
+```
+*/
+
+.media {
+    @include clearfix;
+}
+
+.media__img {
+    width: 100%;
+    display: block;
+
+    img,
+    picture {
+        width: 100%;
+    }
+}
+
+.media__body {
+    width: 100%;
+    display: block;
+}
+
+/*doc
+---
+title: Side modifiers
+name: 2_media_sides
+parent: 1_media
+---
+
+Applying modifier classes (`.media--left` or `.media--right`) floats the image next to the text.
+
+```html_example
+<div class="media media--left">
+    <figure class="media__img">
+        <img src="http://placehold.it/200x200" alt="a description of the image">
+    </figure>
+    <div class="media__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+</div>
+```
+
+
+```html_example
+<div class="media media--right">
+    <figure class="media__img">
+        <img src="http://placehold.it/500x300" alt="a description of the image">
+    </figure>
+    <div class="media__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+</div>
+```
+
+*/
+
+.media--left,
+.media--right {
+    .media__img {
+        max-width: 50%;
+        width: auto;
+    }
+}
+
+.media--left {
+    .media__img {
+        float: left;
+        margin-right: rem-calc(20);
+    }
+}
+
+.media--right {
+    .media__img {
+        float: right;
+        margin-left: rem-calc(20);
+    }
+}
+
+/*doc
+---
+title: Block side modifiers
+name: 3_media_block_sides
+parent: 1_media
+---
+
+Applying modifier classes (`.media--block-left` or `.media--block-right`) floats the image and prevents the text wrapping.
+
+```html_example
+<div class="media media--block-left">
+    <figure class="media__img">
+        <img src="http://placehold.it/200x200" alt="a description of the image">
+    </figure>
+    <div class="media__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+</div>
+```
+
+
+```html_example
+<div class="media media--block-right">
+    <figure class="media__img">
+        <img src="http://placehold.it/500x300" alt="a description of the image">
+    </figure>
+    <div class="media__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+</div>
+```
+
+*/
+
+.media--block-left,
+.media--block-right {
+    .media__img {
+        width: 38%;
+    }
+    .media__body {
+        width: 62%;
+        float: left;
+    }
+}
+
+.media--block-left {
+    .media__img {
+        float: left;
+    }
+    .media__body {
+        padding-left: rem-calc(10);
+    }
+}
+
+.media--block-right {
+    .media__img {
+        float: right;
+    }
+    .media__body {
+        padding-right: rem-calc(10);
+    }
+}
+
+
+/*doc
+---
+title: Responsive modifiers
+name: 3_media_responsive
+parent: 1_media
+---
+
+Applying modifier classes changes the layout based on screen-size
+
+```html_example
+<div class="media media--left--medium">
+    <figure class="media__img">
+        <img src="http://placehold.it/200x200" alt="a description of the image">
+    </figure>
+    <div class="media__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+</div>
+```
+
+
+```html_example
+<div class="media media--right--medium">
+    <figure class="media__img">
+        <img src="http://placehold.it/500x300" alt="a description of the image">
+    </figure>
+    <div class="media__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+</div>
+```
+
+*/
+
+
+.media--left--medium,
+.media--right--medium {
+    @include respond-to(medium) {
+        .media__body,
+        .media__img {
+            max-width: 50%;
+            width: auto;
+        }
+    }
+}
+
+
+.media--left--medium {
+    @include respond-to(medium) {
+        .media__img {
+            float: left;
+            margin-right: rem-calc(10);
+        }
+        .media__body {
+            float: left;
+            margin-left: rem-calc(10);
+        }
+    }
+}
+
+.media--right--medium {
+    @include respond-to(medium) {
+        .media__img {
+            float: right;
+            margin-left: rem-calc(10);
+
+        }
+        .media__body {
+            float: right;
+            margin-right: rem-calc(10);
+        }
+    }
+}
+
+.media--stacked--large {
+    @include respond-to(large) {
+        .media__img,
+        .media__body {
+            margin-left: 0;
+            margin-right: 0;
+            float: none;
+            width: 100%;
+            max-width: none;
+        }
+    }
+}

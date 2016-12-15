@@ -1,0 +1,55 @@
+// ==========================================================================
+// ACCORDION
+// ==========================================================================
+
+
+/*doc
+---
+title: Accordion
+name: 9_accordion
+category: molecules
+---
+
+*/
+
+.m-accordion {
+}
+
+.m-accordion__title {
+    @include font-scale(small, type-config(headings-family));
+    line-height: 1;
+    border-top: rem-calc(1) solid palette(grey);
+    margin-bottom: 0;
+    padding: rem-calc(15 0);
+
+    &:first-child {
+        border-top: none;
+    }
+
+    a {
+        @extend .link--plain;
+        position: relative;
+        padding-right: rem-calc(20);
+        display: block;
+    }
+
+}
+
+.m-accordion__icon {
+    position: absolute;
+    right: 0;
+    top: rem-calc(1);
+    transition: all 250ms;
+
+    .toggle-target-is--in & {
+        transform: rotate(180deg);
+    }
+}
+
+.m-accordion__content {
+    // TODO this should be better
+    table {
+        @extend .table;
+        margin-bottom: rem-calc(20);
+    }
+}

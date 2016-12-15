@@ -1,0 +1,97 @@
+// ==========================================================================
+// CELL LAYOUT
+// ==========================================================================
+//
+// CONFIG + SETTINGS
+//
+// Default cell padding
+$_cell-default: 20 !default;
+
+//
+// VERTICAL CELLS
+// ==========================================================================
+
+
+/*doc
+---
+title: Cell
+name: 3_cell
+category: layout
+---
+
+To add regular padding to any side of an element, use `.cell` layout
+
+The intervals cell will output are defined in `cells.yml`.
+
+```html_example
+<div class="cell">
+    This element will have the default padding all round
+</div>
+<div class="cell-40">
+    This element will have the 40px padding all round
+</div>
+```
+*/
+/*doc
+---
+title: Vertical cells
+name: 3_cell_vertical
+category: layout
+parent: 3_cell
+---
+
+* `.cell-v*` classes apply both top & bottom padding
+* `.cell-t*` classes apply top padding only
+* `.cell-b*` classes apply bottom padding only
+
+```html_example
+<div class="cell-v20">
+    This element will have 20px top and bottom padding
+</div>
+<div class="cell-t20">
+    This element will have 20px top padding
+</div>
+<div class="cell-b20">
+    This element will have 20px bottom padding
+</div>
+```
+*/
+
+// simples
+.cell {
+    padding: rem-calc($_cell-default);
+    @include trim();
+}
+
+@each $bp, $cells in global-config('cells') {
+
+    $bp_modifier:   if($bp == 'base', '', '--#{$bp}');
+    $width:         if($bp == 'base', false, true);
+
+    @each $s, $sizes in $cells {
+        $prefix: '';
+        $side: '';
+
+        @if ($s != 'all') {
+            $prefix: str-slice($s, 1, 1);
+            $side: '-' + $s;
+        }
+
+        @each $size in $sizes {
+
+            @include conditional-respond-to($bp, $width) {
+                .cell-#{$prefix}#{$size}#{$bp_modifier} {
+                    @if ($side == '-horizontal') {
+                        padding-left: rem-calc($size);
+                        padding-right: rem-calc($size);
+                    } @else if ($side == '-vertical') {
+                        padding-top: rem-calc($size);
+                        padding-bottom: rem-calc($size);
+                    } @else {
+                        padding#{$side}: rem-calc($size);
+                    }
+                }
+            }
+        }
+    }
+}

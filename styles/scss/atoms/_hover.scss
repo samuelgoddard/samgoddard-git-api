@@ -1,0 +1,31 @@
+// ==========================================================================
+// HOVER
+// ==========================================================================
+/*doc
+---
+title: Hover
+name: 15_hover
+category: atoms
+---
+
+Hover atom shows child elements on hover
+
+```html_example
+    <p class="hover">Hover over this paragraph and you'll find...<span class="hover__child">ME</span></p>
+```
+
+*/
+
+.hover {
+    position: relative;
+    @include link-hover {
+        .hover__child {
+            display: block;
+        }
+    }
+}
+
+.hover__child {
+    display: none;
+}
+

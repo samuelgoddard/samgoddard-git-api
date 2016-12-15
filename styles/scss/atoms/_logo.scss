@@ -1,0 +1,35 @@
+// ==========================================================================
+// LOGO
+// ==========================================================================
+
+
+/*doc
+---
+title: Logo
+name: 2_logo
+category: atoms
+---
+
+```html_example
+<div class="island island--pink cell">
+    <a href="/" class="logo">Central College Nottingham</a>
+</div>
+```
+
+*/
+
+.logo {
+    @include text-replace;
+    @include retina-image(logos, site-logo);
+    display: block;
+    width: rem-calc(125);
+    height: rem-calc(35);
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    @include respond-to(mainnav) {
+        width: rem-calc(195);
+        height: rem-calc(55);
+
+    }
+}

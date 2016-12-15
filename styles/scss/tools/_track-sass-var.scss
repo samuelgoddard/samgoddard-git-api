@@ -1,0 +1,38 @@
+// ==========================================================================
+// RETINA IMAGE MIXIN
+// ==========================================================================
+//
+// This mixin adds SVG for certain modules (such as _logo.scss) if the
+// supports map in the /support directory is is set to true.
+//
+//
+// EXAMPLE
+//
+// .module {
+//    @include retina-image(logos, endsleigh);
+// }
+//
+
+// @import 'SassyJSON';
+
+$TRACKED_SASS_VARS: () !default;
+$STYLEGUIDE: false !default;
+
+@mixin track-sass-var($name, $value, $overwrite: false) {
+    @if $STYLEGUIDE != false {
+        $output: ($name: $value);
+
+        @if length($TRACKED_SASS_VARS) == 0 {
+            $TRACKED_SASS_VARS: $output !global;
+        }
+        @else {
+            @if map-has-key($TRACKED_SASS_VARS, $name) and $overwrite != true {
+                @warn "You're already tracking a variable named `#{$name}`, please choose another name, or pass in `$overwrite: true` to overwrite the previous breakpoint.";
+                $TRACKED_SASS_VARS: $TRACKED_SASS_VARS !global;
+            }
+            @else if not map-has-key($TRACKED_SASS_VARS, $name) or $overwrite == true {
+                $TRACKED_SASS_VARS: map-merge($TRACKED_SASS_VARS, $output) !global;
+            }
+        }
+    }
+}

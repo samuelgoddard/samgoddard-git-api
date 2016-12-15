@@ -1,0 +1,42 @@
+// ==========================================================================
+// COLOR PALETTE FUNCTION
+// ==========================================================================
+// Generates color values for other modules.
+//
+// Grabs the Sass source map $palette and gets color value from color key.
+//
+// Example:
+//
+// a {
+//     color: palette(yellow, light);
+// }
+//
+// The map variable can be set in config/colors/
+//
+
+/*doc
+---
+title: Colour palettes
+name: colors
+category: config
+---
+
+Colors are accessed via the `palette()` function, with the tone as the second (optional) parameter, like so:
+
+`.widget {
+    color: palette(grey, dark);
+}`
+
+Standard colours (white and black) should be referenced directly without the palette function like `.widget { color: black; }`
+
+```html_example
+<div data-styleguide-palette></div>
+*/
+
+@function palette($color, $tone: 'base') {
+    $color: quote($color);
+    $palettes: global-config('palettes');
+    $palette: map-get-if-exists($palettes, $color);
+    $value: map-get-if-exists($palette, $tone);
+    @return $value;
+}

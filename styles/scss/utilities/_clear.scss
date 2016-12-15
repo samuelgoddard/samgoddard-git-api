@@ -1,0 +1,33 @@
+// ==========================================================================
+// Clear
+// ==========================================================================
+/*doc
+---
+title: Circle
+name: 15_clear
+category: utilities
+---
+
+Clear past a float, available in three flavours: `u-clear--both`, `u-clear--left`, `u-clear--right`
+
+```html_example
+<figure style="float:left; width: 20%">
+    <img src="http://placehold.it/500x500">
+</figure>
+<p class="u-clear--both"> Cleared text</p>
+
+```
+
+*/
+
+.u-clear--left {
+    clear: left !important;
+}
+
+.u-clear--right {
+    clear: right !important;
+}
+
+.u-clear--both {
+    clear: both !important;
+}

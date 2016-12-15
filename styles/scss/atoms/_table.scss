@@ -1,0 +1,156 @@
+// ==========================================================================
+// TABLES MODULE
+// ==========================================================================
+/*doc
+---
+title: Tables
+name: 11_tables
+category: atoms
+---
+
+Table styles, requires a `.table` class to be applied to the parent `<table>`
+
+```html_example
+<table class="table">
+    <caption>Course Code: CC1520LF1Y</caption>
+    <tr>
+        <th>Qualifications</th>
+        <td>Pearson BTEC Extended <a href="#">Level 3</a> Diploma in Art and Design.</td>
+    </tr>
+    <tr>
+        <th>Teaching &amp; Assessment</th>
+        <td>Assessment is via coursework that is continuously reviewed and monitored and includes marking and moderation by external examiners.</td>
+    </tr>
+</table>
+```
+
+*/
+
+.table {
+
+    @include font-family(type-config(headings-family));
+    @include font-scale(xsmall, type-config(headings-family));
+    color: black;
+    width: 100%;
+
+    thead {
+        display: none;
+        @include respond-to('medium') {
+            display: table-header-group;
+        }
+    }
+
+    th, td {
+        @include trim();
+        display: block;
+        vertical-align: top;
+        border-left: 1px solid palette(grey, light);
+        border-right: 1px solid palette(grey, light);
+        min-width: rem-calc(150);
+        background-color: white;
+
+        @include respond-to(medium) {
+            display: table-cell;
+            width: auto;
+            border: 1px solid palette(grey, light);
+        }
+    }
+
+    th {
+        @include font-weight(bold);
+        padding: rem-calc(20 12 10);
+
+        @include respond-to(medium) {
+            padding: rem-calc(25 20 15);
+        }
+    }
+
+    td, .td {
+        padding: rem-calc(15 12 10);
+        &:last-child {
+            border-bottom: 1px solid palette(grey, light);
+        }
+        @include respond-to(medium) {
+            border-bottom: 1px solid palette(grey, light);
+
+            padding: rem-calc(25 20 20);
+        }
+    }
+
+    tbody:first-of-type tr:first-child td:first-child {
+        border-top: 1px solid palette(grey, light);
+        @include respond-to('medium') {
+            border-top: none;
+        }
+    }
+
+    p, ul, ol {
+        @include font-scale('small');
+    }
+}
+
+
+// SHAME
+// Check courses table if refactoring!
+caption,
+.table__caption {
+
+    padding: rem-calc(20);
+
+    @include font-weight(bold);
+    font-size: calc-font-size(xsmall, type-config(headings-family));
+    text-transform: uppercase;
+    text-align: left;
+
+    background-color: palette(bluegrey);
+    color: white;
+}
+.table__caption {
+    display: block;
+    width: 100%;
+}
+
+// Replacement headers for mobile tables
+.table__header {
+    display: block;
+    @include font-family(type-config(headings-family));
+    @include font-scale(small);
+
+    padding: rem-calc(20 0 0);
+    margin-bottom: 0;
+    @include font-weight(bold);
+
+    @include respond-to(medium) {
+        display: none;
+    }
+}
+
+.table__header--inline {
+    display: inline-block;
+    padding: rem-calc(0 10 0 0);
+}
+
+label.table__header {
+        padding: rem-calc(10);
+
+}
+
+.table__row--hide-below-medium {
+    display: none;
+    @include respond-to('medium') {
+        display: table-row;
+    }
+}
+
+.table--white {
+    td, th {
+        background-color: white;
+    }
+}
+
+// SHAME
+// need to prevent tables from breaking out of their grid columns
+.table-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+}

@@ -1,0 +1,26 @@
+// ==========================================================================
+// IE8 TOOL
+// ==========================================================================
+//
+// A mixin to target CSS rules at everybody's favourite browser
+//
+//
+// Example:
+//
+// .class {
+//      @include ie8() {
+//          content: 'upgrade, fool!'
+//      }
+// }
+
+$support-ie8: false !default;
+
+@mixin ie8 () {
+    @if $support-ie8 {
+        @content;
+    }
+}
+
+@function ie8() {
+    @return $support-ie8;
+}

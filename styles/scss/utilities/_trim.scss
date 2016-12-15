@@ -1,0 +1,22 @@
+// ==========================================================================
+// TRIM
+// ==========================================================================
+/*doc
+---
+title: Trim
+name: 10_trim_text
+category: utilities
+---
+
+Removes unncessary margins from a child element.
+
+```html_example
+    <div class="u-trim">
+        <p>This para has no bottom margin. Lorem ipsum dolor sit amet, consecteturadipisicing elit. Sequiconsequaturminuspariaturquaeratsuscipitdoloremqueperferendisdoloreminventoreeligendihiccupiditateimpeditporronostrumfacere consectetur a, facilis assumenda neque.</p>
+    </div>
+```
+*/
+
+.u-trim {
+    @include trim();
+}

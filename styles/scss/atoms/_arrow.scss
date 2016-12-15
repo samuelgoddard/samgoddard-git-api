@@ -1,0 +1,34 @@
+// ==========================================================================
+// ARROWS
+// ==========================================================================
+
+
+.arrow {
+    @extend .link--plain;
+    border-radius: 50%;
+    height: rem-calc(60);
+    width: rem-calc(60);
+    padding-left: rem-calc(20);
+    padding-top: rem-calc(17);
+    background-color: black;
+
+    @include link-hover {
+        background-color: palette(pink);
+    }
+
+    @include respond-to(medium) {
+        height: rem-calc(100);
+        width: rem-calc(100);
+        padding-left: rem-calc(40);
+        padding-top: rem-calc(37);
+    }
+}
+
+.arrow--right {
+    padding-left: rem-calc(0);
+    padding-right: rem-calc(20);
+
+    @include respond-to(medium) {
+        padding-right: rem-calc(40);
+    }
+}

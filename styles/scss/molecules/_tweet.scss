@@ -1,0 +1,78 @@
+// ==========================================================================
+// TWEET MOLECULE
+// ==========================================================================
+
+/*doc
+---
+title: Tweets
+name: 1_tweets
+category: molecules
+---
+
+Styles for displaying single tweets
+
+__Dependencies__
+
+[icon](icons.html), [links](atoms.html#4_links), [avatar](atoms.html#15_avatar)
+
+```html_example
+<div class="m-tweet">
+    <div class="m-tweet__profile">
+        <img src="https://pbs.twimg.com/profile_images/601309658737987585/y9esfhXD_400x400.jpg" class="m-tweet__avatar avatar--50 avatar--square">
+        <span class="m-tweet__name">Chris Pavey</span><br>
+        <a href="http://twitter.com/chrisjpavey" class="link--plain">@chrisjpavey</a>
+    </div>
+    <p class="m-tweet__content">Check out my top tips for Facebook marketing in today's <a href="http://twitter.com/Nottingham_Post">@Nottingham_Post</a> <a href="https://twitter.com/hashtag/digitalmarketing?src=hash">#digitalmarketing</a></p>
+    <div class="m-tweet__meta">
+        <b class="icon icon--twitter icon--midi m-tweet__icon" data-grunticon-embed>Twitter</b> <a href="https://twitter.com/chrisjpavey/status/672711840057729024">4 Dec via Twitter</a>
+    </div>
+</div>
+```
+*/
+
+.m-tweet {
+    max-width: rem-calc(250);
+
+    a {
+        @include link {
+            background-image: none;
+        }
+    }
+}
+
+.m-tweet__profile {
+    @include font-family(type-config(headings-family));
+    @include font-scale(xsmall, din);
+    @include font-weight(regular);
+    @include clearfix;
+    padding-top: rem-calc(8);
+    margin-bottom: rem-calc(15);
+}
+
+.m-tweet__name {
+    @include font-weight(bold);
+    text-transform: uppercase;
+}
+
+.m-tweet__avatar {
+    float: left;
+    position: relative;
+    top: rem-calc(-8);
+    margin-right: rem-calc(8);
+}
+
+.m-tweet__content {
+
+}
+
+.m-tweet__meta {
+    @include font-family(type-config(headings-family));
+    @include font-scale(xxsmall, din);
+    color: palette(grey, dark);
+
+    a {
+        @include link {
+            color: palette(grey, dark);
+        }
+    }
+}

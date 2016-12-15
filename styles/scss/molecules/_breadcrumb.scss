@@ -1,0 +1,86 @@
+// ==========================================================================
+// BREADCRUMB MOLECULE
+// ==========================================================================
+/*doc
+---
+title: Breadcrumb
+name: 2_breadcrumb
+category: molecules
+---
+
+__Dependencies__
+
+[icon](icons.html), [visibility](utilities.html#9_hide_visible)
+
+```html_example
+<nav class="m-breadcrumb" role="navigation" aria-label="You are here:">
+    <ol>
+        <li class="m-breadcrumb__item m-breadcrumb__item--home">
+            <a href="/">
+                <b class="icon icon--home icon--mid icon--mini" data-grunticon-embed></b>
+                Study
+            </a>
+        </li>
+        <li class="m-breadcrumb__item m-breadcrumb__item--previous">
+            <a href="/courses/">
+                <b class="icon icon--arrow-right icon--mid icon--mini" data-grunticon-embed></b>
+                Courses
+            </a>
+        </li>
+        <li class="m-breadcrumb__item m-breadcrumb__item--current">
+            <b class="icon icon--arrow-right icon--mid icon--mini" data-grunticon-embed></b>
+            <span class="is--hidden">Current: </span>
+            Art &amp; Design and Photography
+        </li>
+    </ol>
+</nav>
+```
+*/
+
+.m-breadcrumb {
+    @include clearfix();
+    padding: rem-calc(20) 0;
+    color: palette(grey, dark);
+    margin-left: rem-calc(-5);
+}
+
+.m-breadcrumb__item {
+    @include font-family(type-config(headings-family));
+    @include font-scale(xsmall, din);
+    @include font-weight(regular);
+
+    display: none;
+    float: left;
+
+    a {
+        @extend .link--plain;
+        color: palette(grey, dark);
+        transition: color 250ms;
+
+        @include link-hover() {
+            color: palette(pink);
+        }
+    }
+
+    .icon {
+        float: left;
+        margin: rem-calc(2 5 0);
+    }
+
+    @include respond-to(medium) {
+        display: block;
+    }
+}
+
+// .m-breadcrumb__item--previous,
+.m-breadcrumb__item:first-child {
+    display: block;
+
+    .icon--angle-right {
+        transform: rotate(180deg);
+
+        @include respond-to(medium) {
+            transform: rotate(0deg);
+        }
+    }
+}

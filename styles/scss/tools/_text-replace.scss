@@ -1,0 +1,18 @@
+// ==========================================================================
+// TEXT REPLACE
+// ==========================================================================
+//
+// This module can be included in other components in order to hide the text. Currently
+// we’re using this method: http://nicolasgallagher.com/another-css-image-replacement-technique/
+//
+// h1 {
+//  background-image:...;
+//  @include text-replace;
+// }
+//
+
+@mixin text-replace {
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}

@@ -1,0 +1,133 @@
+// ==========================================================================
+// ISLANDS ATOM
+// ==========================================================================
+//
+//
+
+/*doc
+---
+title: Islands
+name: 12_islands
+category: atoms
+---
+
+Islands set the background colours on elements. They do not change the
+ styling of any child components beyond applying `trim()`, or set the padding — this
+ is instead done via [cell][3_cell]
+
+By default all islands are clearfixed with a white background.
+
+```dark_html_example
+<div class="island">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+     varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+```
+*/
+
+.island {
+    @include clearfix();
+    @include trim();
+    display: block;
+    background-color: white;
+}
+
+
+
+/*doc
+---
+title: Colors
+name: 12_islands_colors
+category: atoms
+parent: 12_islands
+---
+
+Colour modifiers are automatically generated for every colour in the palette
+
+
+### Grey black islands
+
+
+```dark_html_example
+<div class="island">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+    varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+```
+
+```html_example
+
+<div class="island island--xlight">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+    varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+
+<div class="island island--light">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+    varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+<div class="island  island--grey">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+     varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+
+<div class="island island--mid-dark u-inverse">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+    varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+
+<div class="island island--dark u-inverse">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+    varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+
+<div class="island island--xdark u-inverse">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+    varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+
+<div class="island island--black u-inverse">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra varius
+    ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+```
+
+*/
+
+
+.island--black {
+    background-color: black;
+}
+
+.island--white {
+    background-color: white;
+}
+
+@each $color, $shades in global-config('palettes') {
+    $colorName: if($color == 'grey', '', '--#{$color}');
+    @each $shade, $value in $shades {
+
+        $shadeModifier: if($shade == base, '', '--#{$shade}');
+
+        @if $shade == base {
+
+            $shadeModifier: if($color == 'grey', '--#{$color}', '');
+        }
+        @else {
+            $shadeModifier: '--#{$shade}';
+        }
+
+        .island#{$colorName}#{$shadeModifier} {
+            background-color: palette($color, $shade);
+        }
+    }
+}

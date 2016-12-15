@@ -1,0 +1,119 @@
+// ==========================================================================
+// BLOCKQUOTE ATOM
+// ==========================================================================
+//
+
+/*doc
+---
+title: Blockquotes
+name: 5_blockquotes
+category: atoms
+---
+
+```html_example
+<blockquote>
+    <p>Check out our open days to get a taste of life at Central and secure a place here for 2016.</p>
+</blockquote>
+```
+
+Add the `.blockquote` class to any element to achieve the same effect:
+
+```html_example
+<div class="blockquote">
+    <p>Check out our open days to get a taste of life at Central and secure a place here for 2016.</p>
+</div>
+```
+
+Can have an optional `<cite>`
+
+```html_example
+<blockquote>
+    <p>Check out our open days to get a taste of life at Central and secure a place here for 2016.</p>
+    <cite>
+        <span class="cite__name">Ashley Johnson</span>
+        English GCSE Student
+    </cite>
+</blockquote>
+```
+
+Can have an optional `.blockquote--extended` class to reduce font size on long quotes so they don't look odd
+
+```html_example
+<blockquote class="blockquote--extended">
+    <p>Check out our open days to get a taste of life at Central and secure a place here for 2016.</p>
+    <cite>
+        <span class="cite__name">Ashley Johnson</span>
+        English GCSE Student
+    </cite>
+</blockquote>
+```
+
+
+*/
+
+blockquote,
+.blockquote {
+
+    > p {
+        font-style: italic;
+        color: currentColor;
+
+        &:before {
+            content: "\201C";
+            position: absolute;
+            margin-left: rem-calc(-10);
+
+            @include respond-to(medium) {
+                margin-left: rem-calc(-12);
+            }
+        }
+
+        &:first-child {
+            @include font-scale(large);
+
+            @include respond-to('medium') {
+                @include font-scale(xxlarge);
+            }
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+        }
+        &:last-of-type {
+            &:after {
+                content: "\201D";
+            }
+        }
+    }
+}
+
+
+
+.blockquote--extended {
+    > p:first-child {
+        @include font-scale(base);
+
+        @include respond-to('medium') {
+            @include font-scale(large);
+        }
+    }
+}
+
+cite {
+    margin-top: rem-calc(15);
+    @include font-family(type-config(headings-family));
+    @include font-scale(xsmall, din);
+    color: currentColor;
+    text-transform: uppercase;
+    display: inline-block; // necessary to get line-height right
+}
+
+.cite__name {
+    display: block;
+    @include font-weight(bold);
+
+    @include respond-to(medium) {
+        display: inline-block;
+    }
+}

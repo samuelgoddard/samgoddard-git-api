@@ -1,0 +1,46 @@
+// ==========================================================================
+// INVERSE HELPER
+// ==========================================================================
+
+/*doc
+---
+title: Inverse
+name: 13_inverse
+category: utilities
+---
+
+The inverse color utility will set all text elements to white. This module is commonly used in conjuction with the [island][12_islands] classes.
+
+```html_example
+<div class="u-inverse island--dark">
+    <h2>Fusce ipsum sapien</h2>
+    <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>. Vivamus pharetra varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+</div>
+```
+
+*/
+
+@mixin inverse() {
+    & {
+        color: white;
+    }
+
+    a,
+    .link--fake {
+        @include link() {
+            color: white;
+            @include underline(transparentize(white, 0.6));
+        }
+
+        @include link-hover() {
+            border-color: white;
+        }
+    }
+}
+
+
+
+.u-inverse {
+    @include inverse();
+}
+

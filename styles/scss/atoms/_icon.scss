@@ -1,0 +1,258 @@
+// ==========================================================================
+// ICONS ATOM
+// ==========================================================================
+// # ABSTRACT
+
+$_icon-sizes: (
+    10: 10,
+    mini: 12,
+    midi: 16,
+    maxi: 20,
+    // maxi: 30
+);
+
+@mixin icon-dimensions($size){
+    &,
+    & > svg {
+        width: rem-calc($size);
+        height: rem-calc($size);
+    }
+}
+
+/*doc
+---
+title: Icon System
+name: 1_icons
+category: icons
+---
+
+[Grunticon](https://github.com/filamentgroup/grunticon) is used to package SVG
+icons, generate PNG fallbacks and asynchronously load the appropriate CSS for
+a given client / browser.
+
+Our icon system then allows us to apply sizing and colours to any icon.
+
+* By default grunticon uses classnames to apply the appropriate bg image, eg `.icon--arrow`
+* The default colour will be whatever is set in the SVG file, (black if no colour is set)
+* The classname is derived from the svg filename
+* Additional colours can be set using the ['options.colors'](https://github.com/filamentgroup/grunticon#optionscolors)
+  setting in the grunticon config object, or by setting colour names in the icon's file name
+  eg `myfilename.colors-red-aa0000-gray.svg`
+
+
+```html_example_table
+
+<b class="icon icon--search">Search</b>
+
+```
+*/
+
+.icon {
+    @include bg-cover();
+    @include text-replace();
+    display: inline-block;
+    vertical-align: middle;
+    @include icon-dimensions(map-get($_icon-sizes, midi));
+    > svg {
+        display: block;
+    }
+}
+
+.icon--block {
+    display: block;
+}
+
+/*doc
+---
+title: Colours
+name: 2_colours
+category: icons
+---
+
+By default icons will render in the same colour as their source file.
+
+To acheive a custom colour in browsers that support SVG by adding `data-grunticon-embed` to the `.icon` element,
+which will cause grunticon to [embed the icon in the document](https://github.com/filamentgroup/grunticon#version-20-is-out---heres-whats-new)
+instead of using a bg image and apply a colour class.
+
+NB This will only work with simple, single colour icons.
+
+
+```html_example_table
+<b data-grunticon-embed class="icon icon--search icon--white">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--black">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--xlight">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--light">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--mid">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--dark">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--xdark">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--grey">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--pink">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--bluegrey">Search</b>
+
+<b data-grunticon-embed class="icon icon--search icon--bluegrey-dark">Search</b>
+
+
+```
+*/
+
+
+// Twitter icon is blue by default
+.icon--twitter {
+    path {
+        fill: #1899d4;
+    }
+}
+
+.icon--white {
+    path {
+        fill: white;
+    }
+    polygon {
+        fill: white;
+    }
+}
+
+.icon--black {
+    path {
+        fill: black;
+    }
+}
+
+
+@each $color, $shades in global-config('palettes') {
+
+    @each $shade, $value in $shades {
+
+        $shadeModifier: if($shade == 'base', '', '--#{$shade}');
+
+        $modifier: '--#{$color}#{$shadeModifier}';
+
+        @if not $shadeModifier {
+            $modifier: '#{$color}#{$shadeModifier}';
+        }
+
+        @if ($color == 'grey' and $shade != 'base') {
+            /* grey */
+            $modifier: $shadeModifier;
+        }
+        @else {
+
+        }
+
+        .icon#{$modifier} path {
+            fill: palette($color, $shade);
+        }
+    }
+}
+
+// Hover/active
+@each $shade in ('grey', 'grey') {
+    .icon--hover-#{nth($shade, 1)} {
+        @include link-hover {
+            path {
+                fill: palette($shade);
+            }
+        }
+    }
+}
+
+
+/*doc
+---
+title: Sizes
+name: 3_sizes
+category: icons
+---
+
+Any icon can be displayed in a range of preset sizes using the `.icon--mini`
+and `.icon--maxi` modifiers.
+
+Custom sizes can be achieved by setting a height + width on the element with `.icon` applied
+
+```html_example_table
+<b class="icon icon--search icon--mini">Briefcase</b>
+<b class="icon icon--search icon--midi">Briefcase</b>
+<b class="icon icon--search icon--maxi">Briefcase</b>
+```
+*/
+
+
+
+@each $sizeName, $dimension in $_icon-sizes {
+    .icon--#{$sizeName} {
+        @include icon-dimensions($dimension);
+    }
+}
+
+@each $bp in ('medium', 'large') {
+    @include respond-to($bp) {
+        @each $sizeName, $dimension in $_icon-sizes {
+            .icon--#{$sizeName}--#{$bp} {
+                @include icon-dimensions($dimension);
+            }
+        }
+    }
+}
+
+
+/*doc
+---
+title: In buttons
+name: 4_buttons
+category: icons
+---
+
+When contained as the last item within a `.btn`, an icon will automatically align
+right with appropriate spacing.
+
+Icons in buttons take the mini size and are aligned to the baseline so as to not
+affect button height, therefore
+icon size modifiers won't work inside buttons at present.
+
+An `.icon--left` modifier will give correct spacing for a left aligned icon
+inside a button
+
+The `.icon--left` modifier aligns an icon to the left of some text with proper
+margins.
+
+```html_example
+<a href="#" class="btn">
+    Home
+    <b data-grunticon-embed class="icon icon--home icon--white"></b>
+</a>
+<a href="#" class="btn">
+    <b data-grunticon-embed class="icon icon--laquo icon--left icon--white"></b>
+    Back
+</a>
+<a href="#" class="btn">
+    <!-- icon will still appear as mini! -->
+    <b data-grunticon-embed class="icon icon--laquo icon--left icon--white icon--maxi"></b>
+    Back
+</a>
+```
+*/
+
+.btn {
+    > .icon {
+        @extend .icon--mini;
+        position: relative; // [1] tweak to baseline - vertical-align: baseline doesn't look right
+        top: -1px; // [1]
+        // margin-left: rem-calc(3);
+        // margin-right: rem-calc(-(map-get($_icon-sizes, mini)));
+
+    }
+    // > .icon--left {
+    //     margin-left: rem-calc(-(map-get($_icon-sizes, mini)));
+    //     margin-right: rem-calc(3);
+    // }
+}

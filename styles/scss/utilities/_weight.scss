@@ -1,0 +1,29 @@
+// ==========================================================================
+// FONT WEIGHT UTILITY
+// ==========================================================================
+/*doc
+---
+title: Font weight
+name: 9_bold
+category: utilities
+---
+
+Sets the font weight of an element.
+
+```html_example
+<p>This is a line of text <span class="u-weight--bold">which is bold.</span></p>
+
+<p class="u-weight--thin">This line of text is thin</p>
+<p class="u-weight--regular">This line of text is regular</p>
+<p class="u-weight--medium">This line of text is medium</p>
+<p class="u-weight--bold">This line of text is bold</p>
+```
+
+*/
+
+
+@each $name, $value in type-config('weights') {
+    .u-weight--#{$name} {
+        @include font-weight($name);
+    }
+}

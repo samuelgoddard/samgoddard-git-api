@@ -1,0 +1,35 @@
+// ==========================================================================
+// DOWNLOAD LIST
+// ==========================================================================
+
+
+.m-download-list {
+    width: auto;
+    display: inline-block;
+    
+}
+.m-download-list__title {
+    @include font-family(type-config(headings-family));
+    @include font-weight(bold);
+    margin-bottom: rem-calc(5);
+}
+
+.m-download-list__list {
+
+    > li {
+        @include font-family(type-config(headings-family));
+        @include font-scale(xxsmall, type-config(headings-family));
+        border-top: 1px solid palette(grey, light);
+        padding: rem-calc(10 0);
+
+        &:first-child {
+            border-top: none;
+        }
+
+        a {
+            @include font-scale(xsmall, type-config(headings-family));
+        }
+
+    }
+}
+

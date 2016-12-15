@@ -1,0 +1,31 @@
+// ==========================================================================
+// TABLE FIXED
+// ==========================================================================
+/*doc
+---
+title: Table Fixed
+name: 99_table_fixed
+category: utilities
+---
+
+A utility class for making table layouts with a single parent class: `.u-table-fixed`.
+
+```html_example
+<div class="u-table-fixed island--grey">
+    <div>Item 1</div>
+    <div>Item 2</div>
+</div>
+```
+
+*/
+
+
+.u-table-fixed {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    > * {
+        display: table-cell;
+    }
+}

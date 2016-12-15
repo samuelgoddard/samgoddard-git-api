@@ -1,0 +1,141 @@
+// ==========================================================================
+// COLUMNS ATOM
+// ==========================================================================
+//
+
+/*doc
+---
+title: columns
+name: 15_columns
+category: atoms
+---
+
+Apply CSS multicolumn layout to text! Wonder at the horrendous column breaks!
+
+Available in 2, 3, and 4 column versions:
+
+```html_example
+<div class="columns columns--2">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamcillum
+    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+```
+
+```html_example
+<div class="columns columns--3">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>Ut enim ad minim veniamcillum dolore eu fugiat nulla pariatur. Excepteur
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Ut enim ad minim veniamcillum dolore eu fugiat nulla pariatur. Excepteur
+    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+    mollit anim id est laborum.</p>
+</div>
+```
+
+```html_example
+<div class="columns columns--4">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>Ut enim ad minim veniamcillum dolore eu fugiat nulla pariatur. Excepteur
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Ut enim ad minim veniamcillum dolore eu fugiat nulla pariatur. Excepteur
+    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+    mollit anim id est laborum.</p>
+</div>
+```
+
+*/
+
+.columns {
+    column-gap: rem-calc(20);
+
+    > * {
+        break-inside: avoid;
+    }
+}
+
+.columns--2 {
+    columns: 2;
+}
+
+.columns--3 {
+    columns: 3;
+}
+
+.columns--4 {
+    columns: 4;
+}
+
+
+/*doc
+---
+title: Responsive
+name: 15_columns_responsive
+category: atoms
+parent: 15_columns
+---
+
+Toggle a different number of columns by breakpoint (must be manually added).
+
+Currently available:
+
+* `.columns--2--medium`
+* `.columns--3--medium`
+* `.columns--2--large`
+* `.columns--3--large`
+
+
+```html_example
+<div class="columns columns--2--medium columns--3--large">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.</p>
+</div>
+```
+
+```html_example
+<div class="columns columns--2 columns--3--medium columns--2--large">
+    <p>Ssunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniamcillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.</p>
+</div>
+```
+*/
+
+
+.columns--2--medium {
+
+    @include respond-to("medium"){
+        columns: 2;
+    }
+}
+
+.columns--3--medium {
+
+    @include respond-to("medium"){
+        columns: 3;
+    }
+}
+
+.columns--2--large {
+
+    @include respond-to("large"){
+        columns: 2;
+    }
+}
+
+.columns--3--large {
+
+    @include respond-to("large"){
+        columns: 3;
+    }
+}

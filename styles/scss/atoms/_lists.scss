@@ -1,0 +1,209 @@
+// ==========================================================================
+// LISTS
+// ==========================================================================
+
+
+/*doc
+---
+title: Lists
+name: 8_lists
+category: atoms
+---
+
+*/
+
+%list-base {
+    @include font-scale(base);
+    margin-bottom: rem-calc(15);
+    li {
+        margin-bottom: rem-calc(5);
+
+        &:before {
+            left: 0;
+        }
+    }
+
+    // nested list
+    ul, ol {
+        margin-top: rem-calc(5);
+        margin-left: rem-calc(15);
+    }
+
+}
+
+
+
+/*doc
+---
+title: Unordered Lists
+name: 8_lists_unordered
+category: atoms
+parent: 8_lists
+---
+
+```html_example
+<ul class="list--bullet">
+    <li>Item 1
+        <ul>
+            <li>Item 1.1</li>
+            <li>Item 1.2
+                <ul>
+                    <li>Item 1.2.1</li>
+                    <li>Item 1.2.2</li>
+                </ul></li>
+        </ul></li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+```
+*/
+
+@mixin list--bullet {
+    @extend %list-base;
+
+    li {
+        padding-left: rem-calc(15);
+        position: relative;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: calc(1.2em - 11px);
+            width: rem-calc(6);
+            height: rem-calc(6);
+            border-radius: rem-calc(6);
+            background-color: palette(pink);
+        }
+    }
+}
+
+.list--bullet {
+    @include list--bullet;
+}
+
+
+/*doc
+---
+title: Ordered Lists
+name: 8_lists_ordered
+category: atoms
+parent: 8_lists
+---
+
+```html_example
+<ol class="list--numbered">
+    <li>Item 1
+        <ol>
+            <li>Item 1.1</li>
+            <li>Item 1.2</li>
+        </ol></li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ol>
+```
+*/
+
+@mixin list--numbered {
+    @extend %list-base;
+    counter-reset: list;
+
+    li {
+
+        &:before {
+            counter-increment: list;
+            content: counters(list, ".") ".";
+            color: palette(pink);
+            margin-right: rem-calc(5);
+        }
+    }
+
+    ol {
+        counter-reset: list;
+    }
+}
+
+.list--numbered {
+    @include list--numbered;
+}
+
+
+/*doc
+---
+title: Lists container
+name: 9_lists_container
+category: atoms
+parent: 8_lists
+---
+
+List styles can be added to children using the `.u-styled-lists` container class
+
+```html_example
+<div class="u-styled-lists">
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <ol>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ol>
+</div>
+```
+
+*/
+
+.u-styled-lists {
+    ul {
+        @include list--bullet;
+    }
+
+    ol {
+        @include list--numbered;
+    }
+}
+
+
+
+/*doc
+---
+title: Ticked Lists
+name: 9_lists_ticked
+category: atoms
+parent: 8_lists
+---
+
+```html_example
+<ul class="list--tick">
+    <li>Full-time</li>
+    <li>Level 1 BTEC Diploma</li>
+</ul>
+```
+*/
+
+.list--tick {
+    @include font-family(type-config(headings-family));
+    @include font-scale(xsmall, type-config(headings-family));
+    margin-bottom: rem-calc(20);
+
+    > li {
+        padding-left: rem-calc(20);
+        position: relative;
+
+        &:before {
+            content: "";
+            @include retina-image(icons, 'tick-pink');
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: rem-calc(12);
+            height: rem-calc(15);
+            background-position: center center;
+            background-size: rem-calc(12);
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+

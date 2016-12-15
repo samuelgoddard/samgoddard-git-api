@@ -1,0 +1,45 @@
+// ==========================================================================
+// CURSOR ATOM
+// ==========================================================================
+//
+
+/*doc
+---
+title: cursor
+name: 15_columns
+category: atoms
+---
+
+Adds a flashing cursor to the end of an element. Useful for `contenteditable` elements.
+
+```html_example
+<span class="cursor" contenteditable>Type here...</span>
+```
+*/
+
+@keyframes flash {
+    0% { opacity: 1 }
+    100% { opacity: 0 }
+}
+
+.cursor {
+    position: relative;
+
+    &:after {
+        content: "";
+        width: rem-calc(1);
+        height: 80%;
+        background-color: palette(grey);
+        position: absolute;
+        right: rem-calc(0);
+        bottom: 10%;
+        margin-left: rem-calc(5);
+        animation: 500ms flash ease alternate infinite;
+    }
+
+    &:focus {
+        &:after {
+            display: none;
+        }
+    }
+}

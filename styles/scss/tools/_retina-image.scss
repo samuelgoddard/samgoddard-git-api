@@ -1,0 +1,34 @@
+// ==========================================================================
+// RETINA IMAGE MIXIN
+// ==========================================================================
+//
+// This mixin adds SVG for certain modules (such as _logo.scss) if the
+// supports map in the /support directory is is set to true.
+//
+//
+// EXAMPLE
+//
+// .module {
+//    @include retina-image(logos, endsleigh);
+// }
+//
+
+
+@mixin retina-image($dir, $name, $inline: true) {
+    @if $support-ie8 == false {
+        @if $inline{
+            background-image: image-url("#{$dir}/#{$name}.svg");
+        }
+        @else {
+            background-image: image-url("#{$dir}/#{$name}.svg");
+        }
+    }
+    @else {
+        @if $inline{
+            background-image: image-url("#{$dir}/#{$name}.png");
+        }
+        @else {
+            background-image: image-url("#{$dir}/#{$name}.png");
+        }
+    }
+}

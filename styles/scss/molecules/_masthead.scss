@@ -1,0 +1,236 @@
+// ==========================================================================
+// MASTHEAD MOLECULE
+// ==========================================================================
+/*doc
+---
+title: Masthead
+name: 1_masthead
+category: molecules
+---
+
+__Dependencies__
+
+[logo](atoms.html#2_logo), [nav](atoms.html#7_nav), [hamburger](atoms.html#9_hamburger), [rule](atoms.html#8_rules), [hover](atoms.html#15_hover), [island](layout.html#12_islands), [weight](utilities.html#1_9_bold), [uppercase](utilities.html#9_uppercase), [inverse](utilities.html#13_inverse), [wrapper](layout.html#1_wrapper), [visibility](utilities.html#9_hide_visible)
+
+```html_example
+    <header class="m-masthead">
+        <div class="wrapper--mainnav">
+            <a href="/" class="m-masthead__logo">
+                <b class="logo">Central College Nottingham</b>
+            </a>
+        </div>
+        <nav class="u-uppercase u-weight--bold island island--bluegrey">
+            <div class="wrapper--mainnav">
+                <div class="is--hidden is--visible--mainnav nav nav--small u-inverse m-masthead__main-nav">
+                    <a href="#" class="nav__item is--active">Study</a>
+                    <a href="#" class="nav__item">Life at Central</a>
+                    <a href="#" class="nav__item">Employers</a>
+                    <a href="#" class="nav__item">International</a>
+                    <a href="#" class="nav__item">About Central</a>
+                    <a href="#" class="nav__item nav__item--right">Get in touch</a>
+                </div>
+            </div>
+            <div class="is--hidden--mainnav">
+                <a href="#" class="nav__item nav__item--right m-masthead__menu-toggle"><b class="hamburger">Menu</b></a>
+                <a href="#" class="nav__item nav__item--right m-masthead__search-toggle"><b class="icon icon--search icon--xlight icon--maxi" data-grunticon-embed>Search</b></a>
+            </div>
+        </nav>
+        <nav class="nav is--hidden is--visible--mainnav rule rule--light rule--bottom">
+            <div class="wrapper--mainnav">
+                <ul class="m-masthead__hub-nav">
+                    <li class="nav__item is--active"><a href="#">Courses</a></li>
+                    <li class="nav__item"><a href="#">Higher Education</a></li>
+                    <li class="nav__item hover">
+                        <a href="#">Apprenticeships</a>
+                        <ul class="m-masthead__dropdown-nav nav nav--block hover__child">
+                            <li class="nav__item"><a href="#">Job areas</a></li>
+                            <li class="nav__item"><a href="#">Vacancies</a></li>
+                            <li class="nav__item"><a href="#">About apprenticeships</a></li>
+                            <li class="nav__item"><a href="#">Partnerships</a></li>
+                            <li class="nav__item"><a href="#">How to register</a></li>
+                            <li class="nav__item"><a href="#">Apprenticeships hub</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__item"><a href="#">My options</a></li>
+                    <li class="nav__item"><a href="#">More info</a></li>
+                    <li class="nav__item"><a href="#">Events</a></li>
+                </ul>
+                <div class="m-masthead__static-nav">
+                    <a href="#" class="nav__item nav__item--right btn btn--small btn--pink">Apply</a>
+                    <a href="#" class="nav__item nav__item--right m-masthead__search-toggle"><b class="icon icon--search icon--pink icon--maxi" data-grunticon-embed>Search</b></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+```
+*/
+
+.m-masthead {
+    position: relative;
+    @include font-family(type-config(headings-family));
+    z-index: 11;
+}
+
+
+.m-masthead__logo {
+    @extend .island;
+    @extend .island--pink;
+    display: inline-block;
+    padding: rem-calc(15);
+    margin-bottom: 0; // required as is h1 on homepage
+    position: absolute;
+    z-index: 15;
+    top: 0;
+    left: 0;
+
+    @include respond-to(mainnav) {
+        padding: rem-calc(30 20);
+    }
+}
+
+.m-masthead__menu-toggle {
+    padding: rem-calc(17);
+    border-left: 1px solid palette(grey, dark);
+}
+
+.m-masthead__search-toggle {
+    padding: rem-calc(13 17 14);
+    line-height: 1;
+
+    &.is--active {
+        background-color: palette(grey, xxlight);
+        border-left: 1px solid palette(grey, light);
+        border-right: 1px solid palette(grey, light);
+
+        .icon > svg path {
+            fill: palette(pink);
+        }
+    }
+
+    @include respond-to(mainnav) {
+        padding: rem-calc(20 18);
+        margin-right: rem-calc(10);
+        margin-top: 0 !important; // shame
+        margin-bottom: 0 !important; // shame
+        position: relative;
+
+        &.is--active {
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: rem-calc(-1);
+                left: 0;
+                right: 0;
+                height: rem-calc(1);
+                background-color: palette(grey, xxlight);
+            }
+        }
+    }
+}
+
+.m-masthead__main-nav {
+    @include respond-to(mainnav) {
+        padding: rem-calc(0 0 0 240);
+        position: relative;
+        z-index: 2;
+
+        > .nav__item.is--active {
+            @include link {
+                position: relative;
+                color: white;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    bottom: rem-calc(0);
+                    left: 50%;
+                    margin-left: rem-calc(-6);
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: rem-calc(0 6 5 6);
+                    border-color: transparent transparent white transparent;
+                }
+            }
+        }
+
+        a {
+            color: white;
+        }
+    }
+}
+
+
+.m-masthead__hub-nav {
+    @include respond-to(mainnav) {
+        margin: 0;
+        float: left;
+        width: auto;
+        @include font-scale(small, din);
+        @include font-weight(medium);
+        color: palette(grey, xdark);
+        padding: rem-calc(0 10 0 240);
+
+        > li {
+            float: left;
+
+            @include link-hover {
+                > .nav__item {
+                    background-color: palette(grey, xlight);
+                    border-color: palette(grey, light);
+                    color: palette(pink);
+                }
+            }
+        }
+
+        .nav__item {
+            border: 1px solid transparent;
+            border-bottom: none;
+            position: relative;
+        }
+
+        > li:hover > .nav__item {
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: rem-calc(-2);
+                left: 0;
+                right: 0;
+                height: rem-calc(2);
+                background-color: palette(grey, xlight);
+            }
+        }
+    }
+}
+
+
+.m-masthead__static-nav {
+    .nav__item {
+        margin-top: rem-calc(10);
+        margin-bottom: rem-calc(10);
+    }
+}
+
+.m-masthead__dropdown-nav {
+    position: absolute;
+    z-index: 3;
+    top: rem-calc(60);
+    left: 0; // to line up borders
+    width: rem-calc(300);
+    background-color: palette(grey, xlight);
+    border: 1px solid palette(grey, light);
+    border-top: none;
+
+    .nav__item {
+        border-top: 1px solid palette(grey, light);
+
+        @include link-hover {
+            background-color: white;
+            color: palette(grey, xdark);
+        }
+    }
+
+    li:first-child .nav__item {
+        border-top: none;
+    }
+}

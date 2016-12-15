@@ -1,0 +1,14 @@
+// ==========================================================================
+// STRIP UNITS FUNCTION
+// ==========================================================================
+//
+// Strip the unit from a dimensional value
+//
+// Example:
+//
+//  strip-units(12px); // returns 12
+//
+
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+}

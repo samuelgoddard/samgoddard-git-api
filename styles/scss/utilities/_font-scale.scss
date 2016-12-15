@@ -1,0 +1,34 @@
+// ==========================================================================
+// Font scale
+// ==========================================================================
+/*doc
+---
+title: Font scale
+name: 11_font_scale
+category: utilities
+---
+
+Sets font-size and line-height of an element based on the `font-scale` config
+
+```html_example
+<p class="u-font-scale--xxlarge">XX Large</p>
+<p class="u-font-scale--xlarge">X Large</p>
+<p class="u-font-scale--large">Large</p>
+<p class="u-font-scale--mid-large">Mid large</p>
+<p class="u-font-scale--mid">Mid</p>
+<p class="u-font-scale--base">Base</p>
+<p class="u-font-scale--small">Small</p>
+<p class="u-font-scale--xsmall">X Small</p>
+
+```
+*/
+
+@each $name, $values in map-get(type-config(sizes), default) {
+    @if type-of($values) == "map" {
+        .u-font-scale--#{$name} {
+            @include font-scale($name);
+        }
+    }
+}
+
+

@@ -32,97 +32,93 @@
 
     <body>
         <div class="container">
+            <div class="g">
+                <div class="g__item">
 
-            <h1>Lorem ipsum dolor sit amet</h1>
+                <h1>Lorem ipsum dolor sit amet</h1>
 
-            <p>
-                <span class="terms terms-languages">HTML</span>
-                <span class="terms terms-software">Software here</span>
-                <span class="terms terms-languages">Another language here</span>
-                <span class="terms terms-languages">Language</span>
-                <span class="terms terms-software">More software</span>
-                <span class="terms terms-languages">And another language</span>
-            </p>
+                <p>
+                    <span class="terms terms-languages">HTML</span>
+                    <span class="terms terms-software">Software here</span>
+                    <span class="terms terms-languages">Another language here</span>
+                    <span class="terms terms-languages">Language</span>
+                    <span class="terms terms-software">More software</span>
+                    <span class="terms terms-languages">And another language</span>
+                </p>
 
-            <div id="ghapidata"></div>
+                <div id="ghapidata" class="g"></div>
 
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    let username = 'samuelgoddard';
-                    let requri   = 'https://api.github.com/users/'+username;
-                    let repouri  = 'https://api.github.com/users/'+username+'/repos';
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        let username = 'samuelgoddard';
+                        let requri   = 'https://api.github.com/users/'+username;
+                        let repouri  = 'https://api.github.com/users/'+username+'/repos';
 
-                    requestJSON(requri, function(json) {
+                        requestJSON(requri, function(json) {
 
-                        let username   = json.login;
-                        let aviurl     = json.avatar_url;
-                        let profileurl = json.html_url;
-                        let reposnum     = json.public_repos;
+                            let username   = json.login;
+                            let aviurl     = json.avatar_url;
+                            let profileurl = json.html_url;
+                            let reposnum     = json.public_repos;
 
-                        let outhtml = `
-                            <div class="ghcontent" style="margin-top: 30px;">
-                                <div class="avi">
-                                    <a href="`+profileurl+`" target="_blank"><img src="`+aviurl+`" width="80" height="80" alt="`+username+`"></a>
-                                    <span><br>Repos: `+reposnum+`</span>
-                                </div>
-                            </div>
-                        `;
-
-                        let repositories;
-                        $.getJSON( repouri, function(json){
-                            repositories = json;
-                            repoContent();
-                        });
-
-                        function repoContent() {
-                            $.each(repositories, function(index) {
-                                outhtml = outhtml + `
-                                <div class="card" style="margin-top: 30px;">
-                                    <div class="repolist">
-                                        <h5><a href=" ${ repositories[index].html_url } " target="_blank"><i class="fa fa-github" aria-hidden="true"></i> ${ repositories[index].name }</a></h5>
-                                        <p><i class="fa fa-code" aria-hidden="true"></i> ${ repositories[index].language }</p>
-
-                                        <p>${ repositories[index].description }</p>
-                                    </div>
-
-                                    <div style="margin-top: 30px;" class="repometa">
-                                        <a style="margin-left: 0px;" href="${ repositories[index].html_url }/stargazers"><i class="fa fa-star" aria-hidden="true"></i></a>
-                                        <a style="margin-left: 10px;" href="${ repositories[index].html_url }/issues"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></a>
-                                        <a style="margin-left: 10px;" href="${ repositories[index].html_url }/graphs/commit-activity"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
-
-                                        <p>First push: ${ repositories[index].created_at }</br>
-                                        Latest commit: ${ repositories[index].updated_at }</p>
+                            let outhtml = `
+                                <div class="ghcontent g__item" style="margin-top: 30px;">
+                                    <div class="avi">
+                                        <a href="`+profileurl+`" target="_blank"><img src="`+aviurl+`" width="80" height="80" alt="`+username+`"></a>
+                                        <span><br>Repos: `+reposnum+`</span>
                                     </div>
                                 </div>
-                                `;
+                            `;
+
+                            let repositories;
+                            $.getJSON( repouri, function(json){
+                                repositories = json;
+                                repoContent();
                             });
 
-                            $('#ghapidata').html(outhtml);
+                            function repoContent() {
+
+                                $.each(repositories, function(index) {
+                                    outhtml = outhtml + `
+                                    <div class="g__item g__item--6-12-tablet" style="margin-top: 30px;">
+                                        <div class="m-card">
+                                            <div class="repolist">
+                                                <h5><a href=" ${ repositories[index].html_url } " target="_blank"><i class="fa fa-github" aria-hidden="true"></i> ${ repositories[index].name }</a></h5>
+                                                <p><i class="fa fa-code" aria-hidden="true"></i> ${ repositories[index].language }</p>
+
+                                                <p>${ repositories[index].description }</p>
+                                            </div>
+
+                                            <div style="margin-top: 30px;" class="repometa">
+                                                <a style="margin-left: 0px;" href="${ repositories[index].html_url }/stargazers"><i class="fa fa-star" aria-hidden="true"></i></a>
+                                                <a style="margin-left: 10px;" href="${ repositories[index].html_url }/issues"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></a>
+                                                <a style="margin-left: 10px;" href="${ repositories[index].html_url }/graphs/commit-activity"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
+
+                                                <p>First push: ${ repositories[index].created_at }</br>
+                                                Latest commit: ${ repositories[index].updated_at }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    `;
+                                });
+
+                                $('#ghapidata').html(outhtml);
+                            }
+                        });
+                    });
+
+                    function requestJSON(url, callback) {
+                        $.ajax({
+                            url: url,
+                            complete: function(xhr) {
+                            callback.call(null, xhr.responseJSON);
                         }
                     });
-                });
+                }
+                </script>
 
-                function requestJSON(url, callback) {
-                    $.ajax({
-                        url: url,
-                        complete: function(xhr) {
-                        callback.call(null, xhr.responseJSON);
-                    }
-                });
-            }
-            </script>
-
-
-<!--
-            <h1>Current Dev Environment</h1>
-
-            <ul>
-                <li>Text Editor: Sublime Text 3</li>
-                <li>Theme: Materialize</li>
-                <li>Font: Fira Code</li>
-                <li>Spaces: 4</li>
-            </ul> -->
-
+                </div>
+            </div>
         </div>
     </body>
 </html>

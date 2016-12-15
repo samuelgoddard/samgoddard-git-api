@@ -1,0 +1,33 @@
+// ==========================================================================
+// QUALIFICATIONS TABLE
+// ==========================================================================
+
+.m-qualifications {
+    margin-bottom: rem-calc(5);
+    border-top: 1px solid palette(grey, light);
+    
+    @include respond-to(medium) {
+        border-top: none;
+    }
+
+    // thead {
+    //     @include respond-to('below medium') {
+    //         display: none;
+    //     }
+    // }
+
+    th, td {
+        min-width: 0;
+    }
+
+
+    td {
+        padding: 0;
+    }
+
+    .input {
+        border: none;
+        width: 100%;
+    }
+}
+

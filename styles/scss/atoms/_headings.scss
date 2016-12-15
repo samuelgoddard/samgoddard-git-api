@@ -1,0 +1,201 @@
+// ==========================================================================
+// HEADINGS
+// ==========================================================================
+/*doc
+---
+title: Headings
+name: 1_headings
+category: quarks
+---
+
+Base styles for headings. Headings generally get a bit bigger at larger breakpoints
+
+```html_example
+<h1>h1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque quo, beatae maxime eum.</h1>
+<h2>h2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque quo, beatae maxime eum.</h2>
+<h3>h3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque quo, beatae maxime eum.</h3>
+<h4>h4 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque quo, beatae maxime eum.</h4>
+<h5>h5 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque quo, beatae maxime eum.</h5>
+<h6>h6 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque quo, beatae maxime eum.</h6>
+```
+
+To force one heading (or any other element) to appear like another size (to preserve
+ your hierarchy of headings on a page, apply a `.h*` class, e.g.:
+
+```html_example
+<h3 class="h2">This is a h3 heading, using h2 styles</h3>
+<h2 class="h3">This is a h2 heading, using h3 styles</h2>
+```
+*/
+
+$_heading-font-size-breakpoint: medium;
+
+
+$_headings: (
+    h1: (
+        default-scale: large,
+        enlarged-scale: xlarge,
+        base: (
+            top: 5,
+            bottom: 25
+        ),
+        medium: (
+            top: 5,
+            bottom: 35
+        )
+    ),
+    h2: (
+        default-scale: mid,
+        enlarged-scale: large,
+        base: (
+            top: 5,
+            bottom: 25
+        ),
+        medium: (
+            top: 5,
+            bottom: 30
+        )
+    ),
+    h3: (
+        default-scale: base,
+        enlarged-scale: mid,
+        base: (
+            top: 5,
+            bottom: 15
+        ),
+        medium: (
+            top: 5,
+            bottom: 20
+        )
+    ),
+    h4: (
+        default-scale: xsmall,
+        enlarged-scale: base,
+        base: (
+            top: 0,
+            bottom: 10
+        ),
+        medium: (
+            top: 5,
+            bottom: 15
+        )
+    ),
+    h5: (
+        default-scale: xsmall,
+        enlarged-scale: base,
+        base: (
+            top: 0,
+            bottom: 10
+        ),
+        medium: (
+            top: 5,
+            bottom: 15
+        )
+    ),
+    h6: (
+        default-scale: xxsmall,
+        enlarged-scale: xsmall,
+        base: (
+            top: 0,
+            bottom: 10
+        ),
+        medium: (
+            top: 0,
+            bottom: 10
+        )
+    ),
+) !default;
+
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    @include font-family(type-config(headings-family));
+    @include font-weight(black);
+    -webkit-font-smoothing: antialiased; // preserves legibility at smaller sizes
+    margin: 0 0 rem-calc(15) 0;
+}
+
+h5, .h5,
+h6, .h6 {
+    @include font-weight(bold);
+}
+
+@each $name, $config in $_headings {
+    #{$name}, .#{$name} {
+
+        @include font-scale(map-get($config, default-scale), type-config(headings-family));
+
+        padding-top: rem-calc(map-get(map-get($config, base), top));
+        margin-bottom: rem-calc(map-get(map-get($config, base), bottom));
+
+        @include respond-to($_heading-font-size-breakpoint) {
+            @include font-scale(map-get($config, enlarged-scale), type-config(headings-family));
+            padding-top: rem-calc(map-get(map-get($config, $_heading-font-size-breakpoint), top));
+            margin-bottom: rem-calc(map-get(map-get($config, $_heading-font-size-breakpoint), bottom));
+        }
+    }
+}
+
+
+/*doc
+---
+title: Meta heading
+name: 2_meta_heading
+category: quarks
+parent: 1_headings
+---
+
+This special heading is very small and used above meta lists
+
+```html_example
+<h4 class="h--meta">Course Information</p>
+```
+*/
+
+
+
+//
+// Special headings
+// ==========================================================================
+
+.h--meta {
+    @include font-scale(xxsmall, type-config(headings-family));
+    @include font-family(type-config(headings-family));
+    @include font-weight(bold);
+    text-transform: uppercase;
+    margin-bottom: rem-calc(10);
+    color: palette(grey, mid);
+}
+
+
+
+/*doc
+---
+title: Wrapped heading
+name: 2_wrapped_heading
+category: quarks
+parent: 1_headings
+---
+
+This helper class is used when a heading is wrapped in a container that means it should not have bottom spacing
+
+```html_example
+<div class="hero">
+    <div class="hero__content">
+        <h1 class="h--wrapped
+                    cell-t50 cell-b30
+                    cell-t60--medium cell-b50--medium
+                    cell-t70--large cell-b60--large">Courses &amp; apprenticeships</h1>
+    </div>
+</div>
+```
+*/
+
+.h--wrapped {
+    margin-bottom: 0;
+}
+

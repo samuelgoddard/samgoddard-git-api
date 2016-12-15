@@ -1,0 +1,20 @@
+// ==========================================================================
+// Text replace
+// ==========================================================================
+/*doc
+---
+title: Text replace
+name: 1_replace_text
+category: utilities
+---
+
+This utility hides text in a container:
+
+```html_example
+    <p class="u-text-replace">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi consequatur minus pariatur quaerat suscipit doloremque perferendis dolorem inventore eligendi, hic cupiditate impedit porro nostrum facere consectetur a, facilis assumenda neque.</p>
+```
+*/
+
+.u-text-replace {
+    @include text-replace();
+}

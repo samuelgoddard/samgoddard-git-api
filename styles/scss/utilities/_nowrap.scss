@@ -1,0 +1,26 @@
+// ==========================================================================
+// NOWRAP UTIL
+// ==========================================================================
+/*doc
+---
+title: white-space
+name: 5_whitespace
+category: utilities
+---
+
+A util for wrapping text onto another line on smaller breakpoints whilst on medium and above it will use nowrap.
+
+```html_example
+<a href="http://google.com" class="u-white-space--nowrap">This is an extraordinary long link lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem vero mollitia ad maiores magnam, adipisci dolore officiis doloribus, modi esse numquam! Corporis quod nihil, beatae architecto molestias! Vitae, officiis eum!</a>
+```
+
+*/
+
+
+// TODO: refactor this classname
+.u-white-space--nowrap {
+    @include respond-to('medium'){
+        white-space: nowrap;
+    }
+}
+

@@ -1,0 +1,35 @@
+// ==========================================================================
+// CLEARFIX UTIL
+// ==========================================================================
+/*doc
+---
+title: Clearfix
+name: 1_clearfix
+category: utilities
+---
+
+Clear a float.
+
+```html_example
+<div class="u-clearfix">
+    <div style="background-color: red; height: 30px; width: 300px; float: left;"></div>
+    <div style="background-color: yellow; height: 30px; width: 300px; float: right;"></div>
+</div>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus quam iure, quidem commodi sequi quae maiores excepturi recusandae temporibus magnam ratione eius ex corporis et quia voluptas in, mollitia a?</p>
+```
+
+*/
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+.u-clearfix {
+    @include clearfix();
+}
+

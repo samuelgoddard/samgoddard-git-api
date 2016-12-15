@@ -1,0 +1,36 @@
+// ==========================================================================
+// FLIP
+// ==========================================================================
+/*doc
+---
+title: Flip
+name: 8_flip
+category: utilities
+---
+
+Flip vertically inverts an element, for example this can be used for icons on active states. By default the transition applied by `u-flip` is half a second:
+
+```html_example
+<div class="u-flip">
+    <b data-grunticon-embed
+        class="icon
+                icon--angle-down"
+        aria-hidden="true">Angle-down</b>
+    <b data-grunticon-embed
+        class="icon
+                icon--angle-down
+                u-flip__item"
+        aria-hidden="true">Angle-down</b>
+</div>
+```
+
+*/
+
+$_flip_duration: .5s;
+
+.u-flip {
+    .u-flip__item {
+        transform: scaleY(-1);
+        transition: transform $_flip_duration ease;
+    }
+}

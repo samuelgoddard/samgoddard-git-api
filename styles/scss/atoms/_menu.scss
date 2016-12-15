@@ -1,0 +1,304 @@
+// ==========================================================================
+// MENU
+// ==========================================================================
+
+/*doc
+---
+title: Menu
+name: 8_menu
+category: atoms
+---
+
+If it's a list of links with more complex styling it's a `.menu` not a `.nav`.
+
+This is used for mobile navigation, quick links, sub navigation and first-level navigation on the study hub
+
+```html_example
+<nav class="menu">
+    <a href="#" class="menu__item">Courses <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Higher education <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Apprenticeships <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">My options <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">More info <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Events <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+</nav>
+
+```
+Apply an active state with `.is--active`:
+
+```html_example
+<nav class="menu">
+    <a href="#" class="menu__item is--active">Courses <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Higher education <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Apprenticeships <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+</nav>
+
+```
+
+Optionally prevent text wrapping on menu items (useful inside [columns](15_columns)) by adding a `.menu__item--no-wrap`
+element inline within the item. This uses `text-overflow:ellipsis` to truncate text.
+
+```html_example
+<nav class="menu">
+    <a href="#" class="menu__item menu__item--no-wrap">Courses will not wrap <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Higher education <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Apprenticeships <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+</nav>
+
+```
+
+*/
+
+
+.menu {
+    border-color: palette(grey, light);
+}
+
+.menu__item {
+    @extend .link--plain;
+    display: block;
+    line-height: 1;
+    padding: rem-calc(15 55 15 20);
+    // @include respond-to('medium') {
+    //     padding-left: 0;
+    //     padding-right: rem-calc(30); // space for icon
+    // }
+    // > span {
+
+    // }
+    position: relative;
+    border-top: 1px solid palette(grey, light);
+    transition: color 250ms;
+
+    &:first-child {
+        border: none; // do not change to border-color:transparent or css columns will break!
+    }
+
+    > .icon {
+        position: absolute;
+        right: rem-calc(20);
+        top: rem-calc(19);
+
+        // @include respond-to('medium') {
+        //     right: 0;
+        // }
+
+        path {
+            transition: fill 250ms;
+        }
+    }
+
+    @include link-hover {
+        color: palette(pink);
+    }
+
+    &.is--active {
+        color: palette(pink);
+
+        .icon {
+            path {
+                fill: palette(pink);
+            }
+        }
+    }
+}
+
+.menu__item--border:first-child {
+    border-top: 1px solid palette(grey, light);
+}
+
+.menu__item--no-wrap {
+
+    span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 1.3;
+    }
+}
+
+.menu__item--back {
+    width: 100%;
+    @include font-family(type-config(headings-family));
+    @include font-scale(base);
+    text-align: left;
+    line-height: 1;
+    padding: rem-calc(18 20 15 55);
+    background-color: white;
+
+    .icon {
+        right: auto;
+        left: rem-calc(20);
+    }
+}
+
+/*doc
+---
+title: Inverse menu
+name: 8_menu_inverse
+category: atoms
+parent: 8_menu
+---
+
+When displayed on dark background, you'll want to invert the colours
+
+```html_example
+<div class="island island--bluegrey cell">
+    <nav class="menu menu--inverse">
+        <a href="#" class="menu__item">Term dates <b class="icon icon--arrow-right icon--xlight icon--mini" data-grunticon-embed></b></a>
+        <a href="#" class="menu__item">Advice and guidance <b class="icon icon--arrow-right icon--xlight icon--mini" data-grunticon-embed></b></a>
+        <a href="#" class="menu__item">Student support <b class="icon icon--arrow-right icon--xlight icon--mini" data-grunticon-embed></b></a>
+        <a href="#" class="menu__item">Fees for 2015/16 <b class="icon icon--arrow-right icon--xlight icon--mini" data-grunticon-embed></b></a>
+        <a href="#" class="menu__item">Exams information <b class="icon icon--arrow-right icon--xlight icon--mini" data-grunticon-embed></b></a>
+        <a href="#" class="menu__item">Accommodation <b class="icon icon--arrow-right icon--xlight icon--mini" data-grunticon-embed></b></a>
+        <a href="#" class="menu__item">Locations <b class="icon icon--arrow-right icon--xlight icon--mini" data-grunticon-embed></b></a>
+        <a href="#" class="menu__item">Travelling to college <b class="icon icon--arrow-right icon--xlight icon--mini" data-grunticon-embed></b></a>
+        <a href="#" class="menu__item">Enquiries <b class="icon icon--arrow-right icon--xlight icon--mini" data-grunticon-embed></b></a>
+    </nav>
+</div>
+```
+*/
+
+.menu--inverse {
+    border-color: transparentize(white, 0.5);
+
+    .menu__item {
+        color: palette(grey, xlight);
+        border-color: transparentize(white, 0.5);
+    }
+}
+
+
+/*doc
+---
+title: Responsive menu
+name: 8_menu_responsive
+category: atoms
+parent: 8_menu
+---
+
+Responsive menu has a reduced font-size and less padding on smaller screens
+
+```html_example
+<nav class="menu menu--responsive">
+    <a href="#" class="menu__item">Courses <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Higher education <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Apprenticeships <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">My options <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">More info <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Events <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+</nav>
+```
+*/
+
+.menu--responsive {
+    @include respond-to('below medium') {
+        @include font-scale(small);
+    }
+
+    .menu__item {
+        @include respond-to('below medium') {
+            padding: rem-calc(12 50 12 15);
+
+            .icon {
+                right: rem-calc(12);
+                top: rem-calc(12);
+            }
+        }
+    }
+}
+
+
+/*doc
+---
+title: Sub menu
+name: 8_menu_sub
+category: atoms
+parent: 8_menu
+---
+
+Sub menu has a grey background and icon to the left
+
+```html_example
+<nav class="menu menu--responsive">
+    <a href="#" class="menu__item">Courses <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Higher education <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Apprenticeships <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+
+    <nav class="menu menu--sub">
+        <a href="#" class="menu__item"><b class="icon icon--angle-right icon--black icon--mini" data-grunticon-embed></b> Job areas</a>
+        <a href="#" class="menu__item"><b class="icon icon--angle-right icon--black icon--mini" data-grunticon-embed></b> Vacancies</a>
+        <a href="#" class="menu__item is--active"><b class="icon icon--angle-right icon--black icon--mini" data-grunticon-embed></b> About apprenticeships</a>
+        <a href="#" class="menu__item"><b class="icon icon--angle-right icon--black icon--mini" data-grunticon-embed></b> Partnerships</a>
+    </nav>
+
+    <a href="#" class="menu__item">My options <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">More info <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+    <a href="#" class="menu__item">Events <b class="icon icon--arrow-right icon--black icon--mini" data-grunticon-embed></b></a>
+</nav>
+```
+*/
+
+.menu--sub {
+    background-color: palette(grey, xxlight);
+    border-top-width: 1px;
+    border-top-style: solid;
+
+    .menu__item {
+        padding-left: rem-calc(40);
+
+        .icon {
+            right: auto;
+            left: rem-calc(20);
+        }
+    }
+
+    .menu--responsive &,
+    &.menu--responsive {
+        @include respond-to('below medium') {
+            .menu__item {
+                .icon {
+                    top: rem-calc(14);
+                }
+            }
+        }
+
+    }
+}
+
+
+//
+// removing borders when needed
+// ==========================================================================
+.menu__item.menu__item--noborder--medium {
+    @include respond-to(medium) {
+        border-color: transparent;
+        .ie9 & {
+            border-color: inherit;
+        }
+        @include ie8() {
+            border-color: inherit;
+        }
+    }
+
+    @include respond-to(large) {
+        border-color: palette(grey, light);
+
+        .menu--inverse & {
+            border-color: transparentize(white, 0.5);
+        }
+    }
+}
+
+.menu__item.menu__item--noborder--large.menu__item--noborder--large {
+    @include respond-to(large) {
+        border-color: transparent;
+        .ie9 & {
+            border-color: inherit;
+        }
+        @include ie8() {
+            border-color: inherit;
+        }
+    }
+}

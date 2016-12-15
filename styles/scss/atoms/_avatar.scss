@@ -1,0 +1,74 @@
+// ==========================================================================
+// AVATAR ATOM
+// ==========================================================================
+//
+
+/*doc
+---
+title: Avatar
+name: 15_avatar
+category: atoms
+---
+
+Base avatars are 80x80 and circular
+
+```html_example
+<figure class="avatar">
+    <img src="https://pbs.twimg.com/profile_images/601309658737987585/y9esfhXD_400x400.jpg" alt="Chris Pavey">
+</figure>
+```
+*/
+
+
+.avatar {
+    overflow: hidden;
+    border-radius: 100%;
+    width: rem-calc(80);
+    height: rem-calc(80);
+}
+
+
+/*doc
+---
+title: Square avatar
+name: 15_avatar_square
+category: atoms
+parent: 15_avatar
+---
+
+Some avatars have squarer edges
+
+```html_example
+<figure class="avatar avatar--square">
+    <img src="https://pbs.twimg.com/profile_images/601309658737987585/y9esfhXD_400x400.jpg" alt="Chris Pavey">
+</figure>
+```
+*/
+
+.avatar--square {
+    @extend .avatar;
+    border-radius: rem-calc(2);
+}
+
+
+/*doc
+---
+title: Sizes
+name: 15_avatar_sizes
+category: atoms
+parent: 15_avatar
+---
+
+We can optionally change the size of the avatar
+
+```html_example
+<figure class="avatar avatar--50">
+    <img src="https://pbs.twimg.com/profile_images/601309658737987585/y9esfhXD_400x400.jpg" alt="Chris Pavey">
+</figure>
+```
+*/
+
+.avatar--50 {
+    width: rem-calc(50);
+    height: rem-calc(50);
+}

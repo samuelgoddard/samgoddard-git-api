@@ -1,0 +1,32 @@
+// ==========================================================================
+// SCREEN READER ONLY
+// ==========================================================================
+/*doc
+---
+title: Screen Reader only
+name: 14_sr_only
+category: utilities
+---
+
+Helper class to make text available to screen reader users but not display visually
+
+```html_example
+
+<h2 class="u-screen-reader-only">This text is hidden for normal users but will be read by screen readers</h2>
+<p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>. Vivamus pharetra varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+
+```
+
+*/
+
+
+.u-screen-reader-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}

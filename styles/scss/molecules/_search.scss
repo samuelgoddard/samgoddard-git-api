@@ -1,0 +1,150 @@
+// ==========================================================================
+// SEARCH MOLECULE
+// ==========================================================================
+
+$_search-select-width: 100;
+$_search-select-width--sm: 150;
+$_search-btn-width: 40;
+$_search-btn-width--sm: 50;
+
+.m-search {
+}
+
+.m-search__control {
+    height: rem-calc(50);
+    margin: 0 auto;
+    max-width: rem-calc(570);
+    border-radius: rem-calc(30);
+    border: 1px solid palette(grey);
+
+    &.active {
+        // Styling for active parent goes here
+
+    }
+}
+
+.m-search__select {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: rem-calc($_search-select-width);
+    background-color: transparent;
+
+    @include respond-to(small) {
+        width: rem-calc($_search-select-width--sm);
+    }
+
+    .select {
+        background: palette(grey, light);
+        border: none;
+        border-right: 1px solid palette(grey);
+        height: 100%;
+        text-transform: uppercase;
+        @include font-family(type-config(headings-family));
+        @include font-scale(xxsmall, type-config(headings-family));
+        @include font-weight(bold);
+        border-radius: rem-calc(30 0 0 30);
+        padding: rem-calc(2 20 0 12);
+
+        @include respond-to(small) {
+            padding: rem-calc(2 0 0 25);
+        }
+    }
+
+    .select__icon {
+        z-index: 2;
+        top: rem-calc(22);
+
+        @include respond-to(small) {
+            top: rem-calc(18);
+        }
+    }
+}
+
+.m-search__input,
+.m-search__fake-placeholder {
+    position: absolute;
+    left: rem-calc($_search-select-width);
+    top: 0;
+    height: 100%;
+    z-index: 10;
+    background-color: transparent;
+    border: none;
+    width: rem-calc(250);
+    width: calc(100% - #{rem-calc($_search-select-width + $_search-btn-width)});
+    @include font-family(type-config(default-family));
+    font-style: italic;
+    padding: rem-calc(9 8 12 14);
+
+    @include respond-to(small) {
+        left: rem-calc($_search-select-width--sm);
+        width: rem-calc(250);
+        width: calc(100% - #{rem-calc($_search-select-width--sm + $_search-btn-width--sm)});
+    }
+}
+
+.m-search__fake-placeholder {
+    overflow: hidden;
+
+    .m-search__fake-inner {
+        z-index: 1;
+        width: 200%;
+        font-style: italic;
+        color: palette(grey, dark);
+        background-color: white;
+        position: absolute;
+        top: rem-calc(10);
+        left: rem-calc(15);
+        transition: all ease 250ms;
+        animation: tick 8s forwards;
+        animation-iteration-count: 1;
+
+        p {
+            font-size: rem-calc(15);
+        }
+    }
+
+    .input {
+        left: rem-calc(0);
+        z-index: 10;
+        width: 100%;
+        transition: all ease 250ms;
+
+        &:focus {
+            background: white;
+        }
+    }
+}
+
+@keyframes tick {
+    0%   {  top: rem-calc(10);}
+    10%  {  top: rem-calc(10);}
+    20%  {  top: rem-calc(10);}
+    30%  {  top:- rem-calc(32);}
+    40%  {  top:- rem-calc(32);}
+    50%  {  top:- rem-calc(76);}
+    60%  {  top:- rem-calc(76);}
+    70%  {  top:- rem-calc(118);}
+    80%  {  top:- rem-calc(118);}
+    90%  { top:- rem-calc(161);}
+    100% { top:- rem-calc(161);}
+}
+
+.m-search__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: rem-calc($_search-btn-width);
+
+    @include respond-to(small) {
+        width: rem-calc($_search-btn-width--sm);
+
+        .icon,
+        .icon > svg {
+            width: rem-calc(18);
+            height: rem-calc(18);
+        }
+    }
+}

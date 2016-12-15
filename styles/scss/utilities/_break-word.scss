@@ -1,0 +1,21 @@
+// ==========================================================================
+// WORD BREAK
+// ==========================================================================
+/*doc
+---
+title: Break word
+name: 8_break_word
+category: utilities
+---
+
+A utility for breaking words onto multiple lines with `word-break`.
+
+```html_example
+<a class="u-break-word" href="http://google.com">http://google.com/3940198019385/1309810-39581-03/13-041-34081-3/81384019380193801384019348/019340138401384019384</a>
+```
+
+*/
+
+.u-break-word {
+    word-break: break-all;
+}

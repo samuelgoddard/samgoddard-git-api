@@ -15,29 +15,35 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: $f-xxl;
+  line-height: $f-xxl;
   margin-bottom: 1.3rem;
 }
 
 h2 {
   font-size: $f-xl;
+  line-height: $f-xl;
 }
 
 h3 {
+  line-height: $f-xl;
   font-size: $f-l;
 }
 
 h4 {
   font-size: $f-m;
+  line-height: $f-m;
 }
 
 h5 {
   font-size: $f-m;
+  line-height: $f-m;
 }
 
 // Paragraphs
 
 p, blockquote {
   font-size: $f-base;
+  line-height: calc($f-base + 5px);
   margin: 0 0 0.85rem 0;
 }
 

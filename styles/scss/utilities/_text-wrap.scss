@@ -1,0 +1,25 @@
+// ==========================================================================
+// Text wrap
+// ==========================================================================
+/*doc
+---
+title: Text wrap
+name: 10_wrap_text
+category: utilities
+---
+
+This utility wraps text in a container, useful for long strings like email addresses:
+
+```html_example
+    <p class="u-text-wrap">Lorem ipsum dolor sit amet, consecteturadipisicing elit. Sequiconsequaturminuspariaturquaeratsuscipitdoloremqueperferendisdoloreminventoreeligendihiccupiditateimpeditporronostrumfacere consectetur a, facilis assumenda neque.</p>
+```
+*/
+
+@mixin text-wrap(){
+    word-wrap: break-word; 
+    hyphens: auto;
+}
+
+.u-text-wrap {
+    @include text-wrap();
+}

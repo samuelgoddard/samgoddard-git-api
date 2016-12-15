@@ -1,0 +1,46 @@
+// ==========================================================================
+// VERTICAL ALIGN
+// ==========================================================================
+
+/*doc
+---
+title: Vertical Align
+name: 9_vertical-align
+category: utilities
+---
+
+Vertical alignment can be achieved by using the `.u-align--v` utility and followed by the child element `.u-align--v__child`. This method of vertical alignment is supported in browsers from IE8+.
+
+```html_example
+<div class="island">
+    <div class="u-align--v" style="height:400px;">
+        <div class="u-align--v__child">
+            <h3>This is vertically aligned text</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora alias quia corporis, quos placeat error voluptatibus fugit recusandae suscipit reprehenderit omnis deleniti, praesentium dolor a, accusantium quisquam quam dolorum inventore.</p>
+        </div>
+    </div>
+</div>
+```
+*/
+
+// #TODO: refactor into a new class name. This is confusing because it does not set
+// the `vertical-align` property.
+.u-align--v {
+    display: table;
+}
+
+.u-align--v > *,
+.u-align--v__child {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+// This new class makes a lot more sense:
+.u-align--vertical-bottom {
+    vertical-align: bottom; // utils should override every other class
+}
+
+.u-align--vertical-top {
+    vertical-align: top; // utils should override every other class
+}

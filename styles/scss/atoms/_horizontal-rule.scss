@@ -1,0 +1,41 @@
+// ==========================================================================
+// HORIZONTAL RULE
+// ==========================================================================
+//
+
+/*doc
+---
+title: Horizontal rule
+name: 14_hr
+category: atoms
+---
+
+Defaults to 100px wide, use `hr--full` for full width
+
+```html_example
+<hr>
+<hr class="hr--full">
+```
+*/
+
+hr,
+.hr {
+    @include text-replace;
+    width: rem-calc(100);
+    height: rem-calc(5);
+    background-color: black;
+    margin: 0 auto;
+    font-size: 0;
+}
+
+
+.hr--full {
+    width: 100%;
+    background-color: palette(grey,light);
+    height: rem-calc(1);
+    margin: rem-calc(30) 0;
+
+    @include respond-to(medium) {
+        margin: rem-calc(40) 0;
+    }
+}

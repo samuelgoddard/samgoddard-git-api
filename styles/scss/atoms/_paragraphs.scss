@@ -1,0 +1,47 @@
+// ==========================================================================
+// HEADINGS
+// ==========================================================================
+/*doc
+---
+title: Paragraphs
+name: 2_paragraphs
+category: quarks
+---
+
+Base styles for headings. Headings generally get a bit bigger at larger breakpoints
+
+```html_example
+<p>Recently graded '2' by Ofsted, the Visual Arts department have spacious art, fashion, photography and digital i-media studios with a large variety of resources to support our learners. All of our workshops and studios are fully equipped with commercially relevant resources including state- of-the-art Apple Mac and PC multimedia suites with up-to-date software and facilities.</p>
+```
+*/
+
+
+p {
+    @include font-scale(base);
+    margin-bottom: rem-calc(20);
+}
+
+
+/*doc
+---
+title: Intro paragraph
+name: 2_intro_paragraph
+category: quarks
+parent: 2_paragraphs
+---
+
+Stand-first paragraphs are slightly larger
+
+```html_example
+<p class="p--intro">Recently graded '2' by Ofsted, the Visual Arts department have spacious art, fashion, photography and digital i-media studios with a large variety of resources to support our learners. All of our workshops and studios are fully equipped with commercially relevant resources including state- of-the-art Apple Mac and PC multimedia suites with up-to-date software and facilities.</p>
+```
+*/
+
+.p--intro,
+.intro > *,
+.intro--first > *:first-child {
+    @include font-scale(large);
+    margin-bottom: rem-calc(30);
+}
+
+

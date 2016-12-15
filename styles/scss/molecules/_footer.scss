@@ -1,0 +1,159 @@
+$_footerBorderColor: palette(grey, xdark);
+$_footerColumnPadding: 20;
+.m-footer {
+    @include clearfix();
+    @include trim();
+    @include font-family(type-config(headings-family));
+    padding-top: rem-calc(20);
+    color: palette('grey', 'light');
+    background-color: black;
+    text-align: center;
+    @include respond-to('medium') {
+        text-align: left;
+    }
+    // a section of the footer
+    &__section {
+        border-bottom: 1px solid $_footerBorderColor;
+        // [1] pad the columns in, because apparently we don't use grids
+        @include respond-to('large') {
+            margin-left: rem-calc($_footerColumnPadding);
+        }
+        // social icons need some SPACE man
+        &--social {
+            padding-bottom: rem-calc(14);
+        }
+        // sections with icons and login btn doesn't want a bottom border once we're big
+        &--social,
+        &--newsletter,
+        &--btn {
+            @include respond-to('large') {
+                border-bottom-color: transparent;
+            }
+        }
+    }
+    // title of each section
+    &__section-title {
+
+        @include font-family(type-config(headings-family));
+        @include font-scale(small, type-config(headings-family));
+        @include font-weight(bold);
+
+        position: relative;
+        display: block; // <button> override
+        width: 100%;
+        margin-bottom: 0; // override
+        padding: rem-calc(15 30 12);
+        @include respond-to('medium') {
+            padding-left: 0;
+        }
+        &:hover {
+            background-color: transparent;
+        }
+        &:focus {
+            background-color: transparent;
+        }
+
+        color: white;
+        text-transform: uppercase;
+        text-align: inherit;
+
+        background-color: transparent; // <button> override
+        border: none; // <button> override
+        > .icon  {
+            position: absolute;
+            right: rem-calc(5);
+            transition: all 250ms;
+        }
+
+        &.toggle-target-is--in {
+            .icon {
+                transform: rotate(180deg);
+            }
+        }
+    }
+    // link list wrapper
+    &__menu {
+
+        display: none;
+        border-color: $_footerBorderColor;
+        @include respond-to('large') {
+            display: block;
+        }
+        // show if no js / js not loaded
+        .no-js & {
+            display: block;
+        }
+    }
+    // individual link list items
+    &__menu-item {
+
+        @include font-scale(xsmall, type-config(headings-family));
+        @include font-weight(medium);
+        border-top-color: $_footerBorderColor;
+        color: palette('grey', 'mid');
+
+        padding-left: rem-calc(20);
+        padding-right: rem-calc(20);
+
+        @include link-hover {
+            color: white;
+        }
+
+        @include respond-to(medium) {
+            padding-left: 0;
+            padding-right: rem-calc(30); // space for icon
+        }
+    }
+    // links to social icons
+    &__social-link {
+        @include link-plain();
+        @include circle();
+        display: inline-block;
+        width: rem-calc(30);
+        height: rem-calc(30);
+        margin: 0 rem-calc(2.5);
+        background-color: palette('bluegrey');
+        > .icon {
+            position: relative;
+            display: block;
+            margin: rem-calc(7) auto;
+        }
+    }
+    // newsletter form
+    // TODO: with form styles
+
+    // copyright info
+    &__copy {
+        @include font-scale(xxsmall, type-config(headings-family));
+        @include font-weight(regular);
+        display: block;
+        padding: rem-calc(15 0);
+        @include respond-to('large') {
+            padding: rem-calc(45 $_footerColumnPadding 25); // horiz matches [1]
+        }
+        > a {
+            @include link-plain();
+            @include link-hover() {
+                text-decoration: underline;
+            }
+        }
+
+        // Kind Logo
+        .m-footer__creator {
+            padding-top: rem-calc(5);
+            display: block;
+
+            img {
+                vertical-align: middle;
+                display: inline;
+                opacity: 0.75;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+
+}

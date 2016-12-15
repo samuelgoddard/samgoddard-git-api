@@ -1,0 +1,172 @@
+// ==========================================================================
+// FIGURES ATOM
+// ==========================================================================
+/*doc
+---
+title: Figures
+name: 9_figures
+category: atoms
+---
+
+Basic figures are auto-width. Figcaption is optional
+
+```html_example
+<figure>
+    <img src="https://unsplash.it/600/400" alt="Placeholder">
+    <figcaption>Optional caption for the above image</figcaption>
+</figure>
+```
+*/
+
+figure,
+.figure {
+    display: inline-block;
+    margin: 0;
+    max-width: 100%;
+}
+
+figcaption,
+.figcaption {
+    @include font-family(type-config(headings-family));
+    @include font-scale(xsmall, type-config(headings-family));
+    display: block;
+    margin-top: rem-calc(10);
+}
+
+
+/*doc
+---
+title: Left / right Figures
+name: 9_figures_left_right
+category: atoms
+parent: 9_figures
+---
+
+Figures can optionally be left or right aligned with a percentage based width, or forced to full width.
+
+```html_example
+<figure class="figure--left">
+    <img src="https://unsplash.it/300/200" alt="Placeholder">
+</figure>
+<p>Lorem ipsum dolor sit amet, consectetur, adipisicing elit, sed do eiusmodtem por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud  exercitation ullamco laboris nisi ut aliquip ex ea commodocon sequat.</p>
+<p>Dolor sit amet, consectetur adipisicing elit, sed do eiusm odtempor incididunt. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Dolor sit amet, consectetur adipcing elit, sed do eiusmodtempor inciidunt.<p>
+```
+
+```html_example
+<figure class="figure--right">
+    <img src="https://unsplash.it/350/200" alt="Placeholder">
+</figure>
+<p>Lorem ipsum dolor sit amet, consectetur, adipisicing elit, sed do eiusmodtem por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud  exercitation ullamco laboris nisi ut aliquip ex ea commodocon sequat.</p>
+<p>Dolor sit amet, consectetur adipisicing elit, sed do eiusm odtempor incididunt. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Dolor sit amet, consectetur adipcing elit, sed do eiusmodtempor inciidunt.<p>
+
+```
+
+```html_example
+<figure class="figure--full">
+    <img src="https://unsplash.it/350/200" alt="Placeholder">
+</figure>
+<p>Lorem ipsum dolor sit amet, consectetur, adipisicing elit, sed do eiusmodtem por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud  exercitation ullamco laboris nisi ut aliquip ex ea commodocon sequat.</p>
+<p>Dolor sit amet, consectetur adipisicing elit, sed do eiusm odtempor incididunt. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Dolor sit amet, consectetur adipcing elit, sed do eiusmodtempor inciidunt.<p>
+
+```
+
+*/
+
+.figure--left,
+.figure--right {
+    margin-top: rem-calc(5); // aligns figure with surrounding text
+    width: auto;
+    max-width: 40%;
+
+    > img,
+    > picture {
+        width: auto;
+        margin: 0;
+    }
+
+    @include respond-to("medium") {
+        max-width: 30%;
+    }
+}
+
+.figure--left {
+    float: left;
+    clear: left;
+    margin-right: rem-calc(15);
+
+    @include respond-to("medium") {
+        margin-right: rem-calc(20);
+    }
+}
+
+.figure--right {
+    float: right;
+    clear: right;
+    margin-left: rem-calc(15);
+
+    @include respond-to("medium") {
+        margin-left: rem-calc(20);
+    }
+}
+
+
+.figure--full {
+    width: 100%;
+
+    > img,
+    > picture {
+        width: 100%;
+    }
+}
+
+/*doc
+---
+title: Responsive Figures
+name: 9_figures_responsive
+category: atoms
+parent: 9_figures
+---
+
+Figures can be aligned based on screen width
+
+```html_example
+<figure class="figure--full figure--left--medium">
+    <img src="https://unsplash.it/300/200" alt="Placeholder">
+</figure>
+<p>Lorem ipsum dolor sit amet, consectetur, adipisicing elit, sed do eiusmodtem por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud  exercitation ullamco laboris nisi ut aliquip ex ea commodocon sequat.</p>
+<p>Dolor sit amet, consectetur adipisicing elit, sed do eiusm odtempor incididunt. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Dolor sit amet, consectetur adipcing elit, sed do eiusmodtempor inciidunt.<p>
+```
+
+*/
+
+
+.figure--left--medium,
+.figure--right--medium {
+    @include respond-to(medium) {
+        margin-top: rem-calc(5); // aligns figure with surrounding text
+        width: auto;
+        max-width: 30%;
+
+        > img,
+        > picture {
+            width: auto;
+            margin: 0;
+        }
+    }
+}
+
+.figure--left--medium {
+    @include respond-to("medium") {
+        float: left;
+        clear: left;
+        margin-right: rem-calc(20);
+    }
+}
+
+.figure--right--medium {
+    @include respond-to("medium") {
+        float: right;
+        clear: right;
+        margin-left: rem-calc(20);
+    }
+}

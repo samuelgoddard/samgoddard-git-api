@@ -1,0 +1,302 @@
+// ==========================================================================
+// BUTTONS ATOM
+// ==========================================================================
+
+
+// Hover hex codes are only used here
+$_btn_baseBG: palette(bluegrey);
+$_btn_baseHoverBG: #273642;
+
+$_btn_bluegreylightBG: palette('bluegrey', 'light');
+$_btn_bluegreylightHoverBG: #3A95A8;
+
+$_btn_pinkBG: palette(pink);
+$_btn_pinkHoverBG: #cd1370;
+
+
+
+/*doc
+---
+title: Buttons
+name: 10_buttons
+category: atoms
+---
+
+A button, which can be applied to an anchor, a `<button>`, or an `<input type="submit"/>`.
+
+```html_example
+<a href="#" class="btn">Get in touch</a>
+```
+Buttons are `inline-block` so should sit nicely next to one another
+
+```html_example
+<a href="#" class="btn">Cancel</a>
+<a href="#" class="btn">Send</a>
+```
+*/
+
+.btn, button {
+    @extend .link--plain;
+    display: inline-block;
+    padding: rem-calc(15 20 12);
+    border-radius: rem-calc(2);
+    transition: background-color 200ms ease,
+                color 200ms ease,
+                border-color 200ms ease;
+
+    & + & {
+        margin-top: rem-calc(5);
+        margin-left: rem-calc(5);
+    }
+
+    @include link() {
+
+        @include font-family(type-config(headings-family)); // overrides defaults
+        @include font-weight(bold);
+
+        line-height: 1;
+        font-size: calc-font-size(xxsmall, type-config(headings-family));
+
+        cursor: pointer;
+
+        background-color: $_btn_baseBG;
+        color: white;
+
+        border: 1px solid transparent;
+
+        outline: none;
+
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    @include link-hover() {
+        background-color: $_btn_baseHoverBG;
+    }
+
+    &:active {
+        background-color: $_btn_baseHoverBG;
+        box-shadow: inset rem-calc(0 2 5) rgba(0, 0, 0, 0.2);
+    }
+}
+
+.btn--reset {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
+/*doc
+---
+title: Block modifier
+name: 4_buttons_block
+parent: 10_buttons
+---
+
+Apply `.btn--block` for a full width button
+
+```html_example
+<a href="#" class="btn btn--block">Button</a>
+<a href="#" class="btn btn--block">Button</a>
+<a href="#" class="btn btn--block">Button</a>
+```
+*/
+
+.btn--block {
+    display: block;
+    width: 100%; // override
+    & + & {
+        margin-left: 0;
+    }
+}
+
+.btn--block--large {
+    @include respond-to('large') {
+        display: block;
+        & + & {
+            margin-left: 0;
+        }
+    }
+}
+
+
+/*doc
+---
+title: Color modifiers
+name: 2_buttons_color
+parent: 10_buttons
+---
+
+Colour modifiers are manually defined
+
+```html_example
+<a href="#" class="btn">Button</a>
+<a href="#" class="btn btn--pink">Button</a>
+```
+*/
+
+
+.btn--pink {
+    @include link() {
+        background-color: $_btn_pinkBG;
+        color: white;
+    }
+
+    @include link-hover() {
+        background-color: $_btn_pinkHoverBG;
+    }
+}
+
+.btn--bluegrey--light {
+    @include link() {
+        background-color: $_btn_bluegreylightBG;
+        color: white;
+    }
+
+    @include link-hover() {
+        background-color: $_btn_bluegreylightHoverBG;
+    }
+}
+
+.btn--white {
+    @include link() {
+        background-color: white;
+        color: black;
+    }
+
+    @include link-hover() {
+        color: $_btn_pinkBG;
+    }
+}
+
+
+
+/*doc
+---
+title: Outline modifiers
+name: 3_buttons_outline
+parent: 10_buttons
+---
+
+Outline modifiers are manually defined
+
+```html_example
+<a href="#" class="btn">Button</a>
+<a href="#" class="btn btn--pink btn--outline">Button</a>
+```
+*/
+
+
+
+.btn--outline.btn--pink {
+    @include link() {
+        background-color: transparent;
+        border: 1px solid $_btn_pinkBG;
+        color: $_btn_pinkBG;
+    }
+
+    @include link-hover() {
+        background-color: $_btn_pinkHoverBG;
+        border: 1px solid transparent;
+        color: white;
+    }
+}
+
+.btn--outline.btn--white {
+    @include link() {
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+    }
+
+    @include link-hover() {
+        background-color: white;
+        border: 1px solid transparent;
+        color: black;
+    }
+}
+
+
+/*doc
+---
+title: Small button
+name: 4_buttons_small
+parent: 10_buttons
+---
+
+Small buttons have less padding
+
+```html_example
+<a href="#" class="btn btn--small">Button</a>
+<a href="#" class="btn btn--pink btn--small">Button</a>
+```
+*/
+
+.btn--small {
+    padding: rem-calc(12 20 10);
+}
+
+
+/*doc
+---
+title: Inline button
+name: 4_buttons_inline
+parent: 10_buttons
+---
+
+Inline buttons are used on newsletter forms for example
+
+```html_example
+<a href="#" class="btn btn--pink btn--inline">Go</a>
+```
+*/
+
+.btn--inline {
+    border-radius: rem-calc(0 2 2 0);
+    width: rem-calc(40); // fixed width so we can set the right padding on .input--inline
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/*doc
+---
+title: Rounded button
+name: 5_buttons_rounded
+parent: 10_buttons
+---
+
+Rounded buttons are circular at the edges
+
+```html_example
+<a href="#" class="btn btn--round-left">Button</a>
+<a href="#" class="btn btn--pink btn--round-right">Button</a>
+```
+*/
+
+.btn--round-left {
+    border-radius: rem-calc(25 0 0 25);
+}
+
+.btn--round-right {
+    border-radius: rem-calc(0 25 25 0);
+}
+
+
+.btn__group {
+    @include clearfix;
+
+    .btn {
+        width: calc(50% - #{rem-calc(10)});
+        margin-right: rem-calc(10);
+        float: left;
+
+        & + .btn {
+            margin-top: 0;
+            margin-left: rem-calc(10);
+            margin-right: 0;
+        }
+    }
+}

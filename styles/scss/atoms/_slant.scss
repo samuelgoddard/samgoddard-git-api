@@ -1,0 +1,125 @@
+// ==========================================================================
+// SLANT
+// ==========================================================================
+
+
+$_slant_size: 25;
+$_slant_sizeM: 35;
+$_slant_sizeL: 55;
+
+
+/*doc
+---
+title: Slant
+name: 13_slant
+category: atoms
+---
+
+Slants use padding and clip paths, so internal padding must be added using another element.
+
+```html_example
+<div class="slant island island--light">
+    <div class="cell">
+        <h2>Fusce ipsum sapien</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+        varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+    </div>
+</div>
+```
+
+
+The optional `.slant__after` class pulls up the succeeding elemet using negative margin.
+
+```html_example
+<div class="slant slant--after island island--light">
+    <div class="cell">
+        <h2>Fusce ipsum sapien</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra
+        varius ullamcorper. Aliquam et nunc posuere, facilisis orci ac, luctus arcu.<p>
+    </div>
+</div>
+<div class="island island--bluegrey u-inverse">
+    <div class="cell">
+        <p>Etiam enim augue, finibus quis purus sit amet, blandit fringilla est. Maecenas hendrerit lobortis cursus. Morbi eget gravida nisi, vitae scelerisque elit. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+    </div>
+</div>
+```
+*/
+
+.slant {
+    position: relative;
+    z-index: 2;
+    // padding-bottom: rem-calc($_slant_size / 2);
+    margin-bottom: rem-calc(20);
+
+    @include respond-to(medium) {
+        // padding-bottom: rem-calc($_slant_sizeM / 2);
+        margin-bottom: rem-calc(50);
+    }
+
+    @include respond-to(large) {
+        // padding-bottom: rem-calc($_slant_sizeL / 2);
+
+    }
+
+    &:before {
+        content: "";
+        width: 100%;
+        height: rem-calc($_slant_size * 3);
+        left: 0;
+        bottom: rem-calc(-($_slant_size * 1.5));
+        position: absolute;
+        z-index: 0;
+        transform: skewY(-2deg);
+        bottom: calc(50vw * -0.036);
+
+        @include respond-to(medium) {
+            height: rem-calc($_slant_sizeM * 3);
+        }
+
+        @include respond-to(large) {
+            height: rem-calc($_slant_sizeL * 3);
+        }
+    }
+
+    @each $color, $shades in global-config('palettes') {
+        $colorName: if($color == 'grey', '', '--#{$color}');
+        @each $shade, $value in $shades {
+
+            $shadeModifier: if($shade == base, '', '--#{$shade}');
+
+            @if $shade == base {
+
+                $shadeModifier: if($color == 'grey', '--#{$color}', '');
+            }
+            @else {
+                $shadeModifier: '--#{$shade}';
+            }
+
+            &.island#{$colorName}#{$shadeModifier} {
+                &:before {
+                    background-color: palette($color, $shade);
+                }
+            }
+        }
+    }
+}
+
+
+
+// .slant--after + * {
+//     position: relative;
+//     z-index: 1;
+//     margin-top: rem-calc(-$_slant_size);
+//     padding-top: rem-calc($_slant_size);
+
+//     @include respond-to(medium) {
+//         margin-top: rem-calc(-$_slant_sizeM);
+//         padding-top: rem-calc($_slant_sizeM);
+//     }
+
+//     @include respond-to(large) {
+//         margin-top: rem-calc(-$_slant_sizeL);
+//         padding-top: rem-calc($_slant_sizeL);
+//     }
+// }

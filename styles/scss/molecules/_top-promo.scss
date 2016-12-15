@@ -1,0 +1,12 @@
+.m-top-promo {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+.m-top-promo__img {
+    flex: 1
+}
+
+.m-top-promo__text {
+    flex: 2;
+}

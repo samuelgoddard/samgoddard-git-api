@@ -7,10 +7,20 @@
 
 // Partials files
 @import "reset";
+
+@import "tools/trim";
+
 @import "layout/grid";
-@import "utilities/colors";
+
 @import "molecules/buttons";
 @import "molecules/typography";
+@import "molecules/cards";
+
+@import "utilities/colors";
 @import "utilities/padding";
 @import "utilities/displays";
-@import "molecules/cards";
+@import "utilities/pull";
+@import "utilities/clear";
+@import "utilities/trim";
+
+

@@ -7,5 +7,6 @@
 @mixin trim(){
     > *:last-child {
         margin-bottom: 0;
+        margin-top: 0;
     }
 }

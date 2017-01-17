@@ -1,185 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <title>Sam Git</title>
 
-        <!-- Main Stylesheets -->
-        <style>
-        html, body, div, span, applet, object, iframe,
-        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-        a, abbr, acronym, address, big, cite, code,
-        del, dfn, em, img, ins, kbd, q, s, samp,
-        small, strike, strong, sub, sup, tt, var,
-        b, u, i, center,
-        dl, dt, dd, ol, ul, li,
-        fieldset, form, label, legend,
-        table, caption, tbody, tfoot, thead, tr, th, td,
-        article, aside, canvas, details, embed,
-        figure, figcaption, footer, header, hgroup,
-        menu, nav, output, ruby, section, summary,
-        time, mark, audio, video {
-          margin: 0;
-          padding: 0;
-          border: 0;
-          font-size: 100%;
-          font: inherit;
-          vertical-align: baseline;
-        }
-        /* HTML5 display-role reset for older browsers */
-        article, aside, details, figcaption, figure,
-        footer, header, hgroup, menu, nav, section {
-          display: block;
-        }
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Sam Git</title>
+    <!-- Main Stylesheets -->
+    <style>
+    html {
+        box-sizing: border-box;
+    }
+    
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+    
+    body {
+        line-height: 1.4em;
+    }
+    
+    ol,
+    ul {
+        list-style: none;
+    }
+    
+    blockquote,
+    q {
+        quotes: none;
+    }
+    
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
+    
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    
+    body {
+        background: #22343E;
+    }
+    
+    body {
+        font-family: Conso, monospace;
+        font-weight: 600;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #fff;
+        font-size: 14px;
+        display: block;
+        padding: 0px 20px 20px 20px;
+        max-width: 1200px;
+    }
+    
+    .grid {
+    }
+    
+    
+    
+    .string-indent {
+        display: block;
+        text-indent: -29px;
+        padding-left: 58px;
+    }
+    
+    .oneliner {
+        display: inline-block;
+        overflow: hidden;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+        margin: 5px 0px;
+    }
+    
+    .red {
+        color: #BF4A38;
+    }
+    
+    .yellow {
+        color: #E58645;
+    }
+    
+    .grey {
+        color: grey;
+    }
+    
+    .blue {
+        color: #588AA0;
+    }
+    
+    em {
+        font-style: italic;
+    }
+    
+    ul {
+        list-style: none;
+        margin: 5px 0;
+        padding: 0;
+    }
+    
+    a {
+        border-radius: 3px;
+        padding: 1px 3px;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        background: #E58645;
+        color: #22343E;
+    }
+    
+    a:hover .yellow {
+        color: #22343E;
+    }
+    
+    a.blue:hover {
+        color: #22343E;
+        background: #588AA0;
+    }
 
-        html {
-          box-sizing: border-box;
-        }
-        *, *:before, *:after {
-          box-sizing: inherit;
-        }
+    ul.projects {
+    }
 
-        body {
-          line-height: 1.4em;
-        }
-        ol, ul {
-          list-style: none;
-        }
-        blockquote, q {
-          quotes: none;
-        }
-        blockquote:before, blockquote:after,
-        q:before, q:after {
-          content: '';
-          content: none;
-        }
-        table {
-          border-collapse: collapse;
-          border-spacing: 0;
-        }
-
-        body {
-          background: #22343E;
-        }
-
-        body {
-          font-family: Conso, monospace;
-          font-weight: 600;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          color: #fff;
-          font-size: 14px;
-          display: block;
-          padding: 0px 20px;
-          max-width: 1200px;
+    @media screen and (min-width: 720px) {
+        ul.projects {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 720px;
         }
 
         .grid {
-          width: 100%;
-          float: left;
+            flex-grow: 1;
         }
-
-        @media screen and (min-width: 1024px) {
-          .grid {
-            width: 50%;
-          }
+    }
+    
+    .terminal .terminal-output .format,
+    .cmd .format,
+    .cmd .prompt,
+    .cmd .prompt div,
+    .terminal .terminal-output div div {
+        display: inline-block;
+    }
+    
+    .terminal h1,
+    .terminal h2,
+    .terminal h3,
+    .terminal h4,
+    .terminal h5,
+    .terminal h6,
+    .terminal pre,
+    .cmd {
+        margin: 0;
+    }
+    
+    .terminal h1,
+    .terminal h2,
+    .terminal h3,
+    .terminal h4,
+    .terminal h5,
+    .terminal h6 {
+        line-height: 1.2em;
+    }
+    /*
+    .cmd .mask {
+        width: 10px;
+        height: 11px;
+        background: black;
+        z-index: 100;
+    }
+    */
+    
+    .cmd .clipboard {
+        position: absolute;
+        left: -16px;
+        top: 0;
+        width: 10px;
+        height: 16px;
+        /* this seems to work after all on Android */
+        /*left: -99999px;
+        clip: rect(1px,1px,1px,1px);
+        /* on desktop textarea appear when paste */
+        /*
+        opacity: 0.01;
+        filter: alpha(opacity = 0.01);
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.01);
+        */
+        background: transparent;
+        border: none;
+        color: transparent;
+        outline: none;
+        padding: 0;
+        resize: none;
+        z-index: 0;
+        overflow: hidden;
+    }
+    
+    .terminal .error {
+        color: #f00;
+    }
+    
+    .terminal {
+        position: relative;
+        /*overflow: hidden;*/
+        overflow: auto;
+    }
+    
+    .cmd {
+        padding: 0;
+        height: 1.3em;
+        position: relative;
+        /*margin-top: 3px; */
+    }
+    
+    .terminal .inverted,
+    .cmd .inverted,
+    .cmd .cursor.blink {
+        background-color: grey;
+        color: #000;
+    }
+    
+    .cmd .cursor.blink {
+        -webkit-animation: terminal-blink 1s infinite steps(1, start);
+        -moz-animation: terminal-blink 1s infinite steps(1, start);
+        -ms-animation: terminal-blink 1s infinite steps(1, start);
+        animation: terminal-blink 1s infinite steps(1, start);
+    }
+    
+    @-webkit-keyframes terminal-blink {
+        0%,
+        100% {
+            background-color: #000;
+            color: grey;
         }
-
-        .string-indent {
-            display: block;
-            text-indent: -29px;
-            padding-left: 58px;
+        50% {
+            background-color: #bbb;
+            color: #000;
         }
-
-        .oneliner {
-            display: inline-block;
-            overflow: hidden;
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
-            white-space: nowrap;
-            margin: 5px 0px;
+    }
+    
+    @-ms-keyframes terminal-blink {
+        0%,
+        100% {
+            background-color: #000;
+            color: grey;
         }
-
-        .red {
-          color: #BF4A38;
+        50% {
+            background-color: #bbb;
+            color: #000;
         }
-
-        .yellow {
-          color: #E58645;
+    }
+    
+    @-moz-keyframes terminal-blink {
+        0%,
+        100% {
+            background-color: #22343E;
+            color: grey;
         }
-
-        .grey {
-          color: grey;
+        50% {
+            background-color: #bbb;
+            color: #000;
         }
-
-        .blue {
-          color: #588AA0;
+    }
+    
+    @keyframes terminal-blink {
+        0%,
+        100% {
+            background-color: #22343E;
+            color: grey;
         }
-
-        em {
-          font-style: italic;
+        50% {
+            background-color: #bbb;
+            /* not grey because it's seems there is Google Chrome bug */
+            color: #000;
         }
+    }
+    
+    .terminal .terminal-output div div,
+    .cmd .prompt {
+        display: block;
+        height: auto;
+    }
+    
+    .cmd .prompt {
+    }
+    
+    .terminal,
+    .cmd {
+        color: grey;
+    }
 
-        ul {
-          list-style: none;
-          margin: 5px 0;
-          padding: 0;
-          max-width: 720px;
-          width: 100%;
+    .terminal-output {
+        margin-top: 20px;
+    }
+    
+    .terminal-output > div {
+        /*padding-top: 3px;*/
+        min-height: 14px;
+    }
+    
+    .terminal-output > div > div * {
+        word-wrap: break-word;
+        /* when echo html */
+    }
+    
+    .terminal .terminal-output div span {
+        display: inline-block;
+    }
+    
+    .cmd span {
+        float: left;
+        /*display: inline-block; */
+    }
+    /* fix double style of selecting text in terminal */
+    
+    .terminal-output span,
+    .terminal-output a,
+    .cmd div,
+    .cmd span,
+    .terminal td,
+    .terminal pre,
+    .terminal h1,
+    .terminal h2,
+    .terminal h3,
+    .terminal h4,
+    .terminal h5,
+    .terminal h6 {
+        -webkit-touch-callout: initial;
+        -webkit-user-select: initial;
+        -khtml-user-select: initial;
+        -moz-user-select: initial;
+        -ms-user-select: initial;
+        user-select: initial;
+    }
+    
+    .terminal,
+    .terminal-output,
+    .terminal-output div {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    /* firefox hack */
+    
+    @-moz-document url-prefix() {
+        .terminal,
+        .terminal-output,
+        .terminal-output div {
+            -webkit-touch-callout: initial;
+            -webkit-user-select: initial;
+            -khtml-user-select: initial;
+            -moz-user-select: initial;
+            -ms-user-select: initial;
+            user-select: initial;
         }
+    }
+    
+    .terminal table {
+        border-collapse: collapse;
+    }
+    
+    .terminal td {
+        border: 1px solid grey;
+    }
+    
+    .terminal h1::-moz-selection,
+    .terminal h2::-moz-selection,
+    .terminal h3::-moz-selection,
+    .terminal h4::-moz-selection,
+    .terminal h5::-moz-selection,
+    .terminal h6::-moz-selection,
+    .terminal pre::-moz-selection,
+    .terminal td::-moz-selection,
+    .terminal .terminal-output div div::-moz-selection,
+    .terminal .terminal-output div span::-moz-selection,
+    .terminal .terminal-output div div a::-moz-selection,
+    .cmd div::-moz-selection,
+    .cmd > span::-moz-selection,
+    .cmd .prompt span::-moz-selection {
+        background-color: grey;
+        color: #000;
+    }
+    /* this don't work in Chrome
+    .terminal tr td::-moz-selection {
+        border-color: #000;
+    }
+    .terminal tr td::selection {
+        border-color: #000;
+    }
+    */
+    
+    .terminal h1::selection,
+    .terminal h2::selection,
+    .terminal h3::selection,
+    .terminal h4::selection,
+    .terminal h5::selection,
+    .terminal h6::selection,
+    .terminal pre::selection,
+    .terminal td::selection,
+    .terminal .terminal-output div div::selection,
+    .terminal .terminal-output div div a::selection,
+    .terminal .terminal-output div span::selection,
+    .cmd div::selection,
+    .cmd > span::selection,
+    .cmd .prompt span::selection {
+        background-color: grey;
+        color: #000;
+    }
+    
+    .terminal .terminal-output div.error,
+    .terminal .terminal-output div.error div {}
+    
+    .tilda {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1100;
+    }
 
-        a {
-          border-radius: 3px;
-          padding: 1px 3px;
-          text-decoration: none;
-        }
+    .block {
+        clear: both;
+    }
+    
+    .cmd {
+        clear: both;
+        margin: 0;
+    }
 
-        a:hover {
-          background: #E58645;
-          color: #22343E;
-        }
-
-        a:hover .yellow {
-          color: #22343E;
-        }
-
-        a.blue:hover {
-          color: #22343E;
-          background: #588AA0;
-        }
-        </style>
-
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700" rel="stylesheet">
+    <!-- Fontawesome Stylesheets CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/0.11.23/js/jquery.terminal.min.js"></script>
+</head>
 
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700" rel="stylesheet">
-
-        <!-- Fontawesome Stylesheets CDN -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-        <script
-        src="https://code.jquery.com/jquery-3.1.1.js"
-        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-        crossorigin="anonymous"></script>
-
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="g">
-                <div class="g__item">
-
-<pre class="grey">
+<body>
+    <div class="container">
+        <div class="g">
+            <div class="g__item">
+                <pre class="grey">
       ___           ___
      /\__\         /\__\
     /:/ _/_       /:/ _/_
@@ -194,88 +474,187 @@
 
 
 </pre>
+    
+    <p class="grey"> // website <span class="red">v.2.1.0</span></br>// http://www.github.com/samgoddard</br></p>
 
-                <p class="grey"> // website <span class="red">v.2.1.0</span></br>// http://www.github.com/samgoddard</br></p>
+    <div class="intro">
+        <p>
+            </br>Updating samgoddard.co.uk...</br>
+            Unpacking objects: 100% (19/19), done.</br>
+            From https://github.com/samgoddard/samgoddard</br>
+            * branch master -> FETCH_HEAD</br>
+            * 9f8b2b4..d2725d4 master -> origin/master</br>
+            plugins/gradle/gradle.plugin.zsh | 18 ++++++++++--------</br>
+            </br>
+            1 file changed, 12 insertions(+), 6 deletions(-)</br>
+            Fast-forwarded master to d2725d44fce59ea7060b4d712c5739512a56882d</br>
+            </br>
+        </p>
+        <p class="blue">Success! Hey I'm Sam, I'm a nottingham based developer at [ madebykind.com ] - I'm a big fan of labradors and parrots.</p>
+    </div>      
+    
+        <div id='listings' class='listings'></div>
 
-                <p></br>Updating samgoddard.co.uk...</br>
-                Unpacking objects: 100% (19/19), done.</br>
-                From https://github.com/samgoddard/samgoddard</br>
-                * branch            master     -> FETCH_HEAD</br>
-                * 9f8b2b4..d2725d4  master     -> origin/master</br>
-                plugins/autoenv/autoenv.plugin.zsh       |  2 +-</br>
-                plugins/gradle/gradle.plugin.zsh         | 18 ++++++++++--------</br>
-                plugins/web-search/web-search.plugin.zsh |  2 ++</br>
-                </br>
-                4 files changed, 56 insertions(+), 23 deletions(-)</br>
-                Fast-forwarded master to d2725d44fce59ea7060b4d712c5739512a56882d</br></br></p>
-
-                <p class="blue">Success! Hey I'm Sam, I'm a nottingham based developer at [ madebykind.com ] - I'm a big fan of labradors and parrots.</p>
-
-                <span class="oneliner grey" style="margin-top: 30px;">// Current Projects --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-                <ul>
-                  <div class="grid">
-                    <li><a class="red" href="#"><em class="yellow">active</em> 01: Central College Nottingham</a></li>
-                    <li><a class="red" href="#"><em class="yellow">active</em> 02: The ETI</a></li>
-                    <li><a class="red" href="#"><em class="yellow">active</em> 03: Henley Business School</a></li>
-                    <li><a class="red" href="#"><em class="yellow">active</em> 04: MadeByKind</a></li>
-                    <li><a class="red" href="#"><em class="yellow">active</em> 05: samgoddard.co.uk</a></li>
-                    <li><a class="red" href="#"><em class="yellow">active</em> 06: Another Project</a></li>
-                  </div>
-
-                  <div id="ghapidata" class="grid"></div>
-                </ul>
-
-                <span class="oneliner grey" style="margin-top: 30px;">// Meta -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
-
-                <a class="blue" href="#">[ twitter ]</a>
-                <a class="blue" href="#">[ github ]</a>
-                <a class="blue" href="#">[ reddit ]</a>
-
-
+                <div id="term_demo"></div>
                 <script type="text/javascript">
-                    $(document).ready(function() {
-                        let username = 'samuelgoddard';
-                        let requri   = 'https://api.github.com/users/'+username;
-                        let repouri  = 'https://api.github.com/users/'+username+'/repos';
 
-                        requestJSON(requri, function(json) {
+                    var random = Math.random().toString(36).substring(7);
 
-                            let username   = json.login;
+                    var projects = (`
+                        <div class="projects block">
+                            <span class="oneliner grey" style="margin-top: 30px;">// Current Projects --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                            <ul class="projects">
+                                <div class="grid">
+                                    <li><a class="red" href="#"><em class="yellow">active</em> 01: Central College Nottingham</a></li>
+                                    <li><a class="red" href="#"><em class="yellow">active</em> 02: The ETI</a></li>
+                                    <li><a class="red" href="#"><em class="yellow">active</em> 03: Henley Business School</a></li>
+                                    <li><a class="red" href="#"><em class="yellow">active</em> 04: MadeByKind</a></li>
+                                    <li><a class="red" href="#"><em class="yellow">active</em> 05: samgoddard.co.uk</a></li>
+                                    <li><a class="red" href="#"><em class="yellow">active</em> 06: Another Project</a></li>
+                                </div>
+                                <div class="grid">
+                                    <li><a class="red" href="#" target="_blank"><em class="yellow">legacy</em> <i class="fa fa-github" aria-hidden="true"></i> samgoddard-github-api</a></li>
+                                    <li><a class="red" href="#" target="_blank"><em class="yellow">legacy</em> <i class="fa fa-github" aria-hidden="true"></i> samgoddard-github-api</a></li>
+                                    <li><a class="red" href="#" target="_blank"><em class="yellow">learning</em> <i class="fa fa-github" aria-hidden="true"></i> samgoddard-github-api</a></li>
+                                    <li><a class="red" href="#" target="_blank"><em class="yellow">legacy</em> <i class="fa fa-github" aria-hidden="true"></i> samgoddard-github-api</a></li>
+                                    <li><a class="red" href="#" target="_blank"><em class="yellow">learning</em> <i class="fa fa-github" aria-hidden="true"></i> samgoddard-github-api</a></li>
+                                </div>
+                            </ul>
+                        </div>
+                    `);
 
-                            let outhtml = ``;
+                    var tweets = (`
+                    <div class="tweets block">
+                        <span class="oneliner grey" style="margin-top: 30px;">// Latest Tweets --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                        </ul>
+                    </div>`);
 
-                            let repositories;
-                            $.getJSON( repouri, function(json){
-                                repositories = json;
-                                repoContent();
-                            });
+                    var meta = (`
+                        <div class="meta block">
+                        <span class="oneliner grey" style="margin-top: 30px;">// Meta -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+                        <a class="blue" href="#">[ twitter ]</a>
+                        <a class="blue" href="#">[ github ]</a>
+                        <a class="blue" href="#">[ reddit ]</a>
+                    </div>
+                    `);
 
-                            function repoContent() {
-
-                                $.each(repositories, function(index) {
-                                    outhtml = outhtml + `
-                                        <li><a class="red" href="${ repositories[index].html_url } " target="_blank"><em class="yellow">github</em> <i class="fa fa-github" aria-hidden="true"></i> ${ repositories[index].name }</a></li>
-                                    `;
-                                });
-
-                                $('#ghapidata').html(outhtml);
+                    jQuery(function($) {
+                        function progress(percent, width) {
+                            var size = Math.round(width * percent / 100);
+                            var left = '',
+                                taken = '',
+                                i;
+                            for (i = size; i--;) {
+                                taken += '=';
                             }
+                            if (taken.length > 0) {
+                                taken = taken.replace(/=$/, '>');
+                            }
+                            for (i = width - size; i--;) {
+                                left += ' ';
+                            }
+                            return '[' + taken + left + '] ' + percent + '%';
+                        }
+                        var animation = false;
+                        var timer;
+                        var prompt;
+                        var string;
+                        $('body').terminal(function(command, term) {
+                            var cmd = $.terminal.parse_command(command);
+                            if (cmd.name == 'twitter') {
+                                var i = 0,
+                                    size = cmd.args[0];
+                                prompt = term.get_prompt();
+                                string = progress(0, size);
+                                term.set_prompt(progress);
+                                animation = true;
+
+                                (function loop() {
+                                    string = progress(i++, size);
+                                    term.set_prompt(string);
+                                    if (i < 100) {
+                                        timer = setTimeout(loop, 10);
+                                    } else {
+                                        term.echo(progress(i, size) + ' [[b;#E58645;]Latest Tweets Loaded]')
+                                            .set_prompt(prompt);
+                                        animation = false
+                                        term.clear();
+                                        $("#listings").append(tweets);
+                                    }
+                                })();
+                            }
+
+                            if (cmd.name == 'projects') {
+                                var i = 0,
+                                    size = cmd.args[0];
+                                prompt = term.get_prompt();
+                                string = progress(0, size);
+                                term.set_prompt(progress);
+                                animation = true;
+
+                                (function loop() {
+                                    string = progress(i++, size);
+                                    term.set_prompt(string);
+                                    if (i < 100) {
+                                        timer = setTimeout(loop, 10);
+                                    } else {
+                                        term.echo(progress(i, size) + ' [[b;#E58645;]Projects Loaded]')
+                                            .set_prompt(prompt);
+                                        animation = false
+                                        term.clear();
+                                        $("#listings").append(projects);
+                                    }
+                                })();
+                            }
+
+                            if (cmd.name == 'meta') {
+                                var i = 0,
+                                    size = cmd.args[0];
+                                prompt = term.get_prompt();
+                                string = progress(0, size);
+                                term.set_prompt(progress);
+                                animation = true;
+
+                                (function loop() {
+                                    string = progress(i++, size);
+                                    term.set_prompt(string);
+                                    if (i < 100) {
+                                        timer = setTimeout(loop, 5);
+                                    } else {
+                                        term.echo(progress(i, size) + ' [[b;#E58645;]Projects Loaded]')
+                                            .set_prompt(prompt);
+                                        animation = false
+                                        term.clear();
+                                        $("#listings").append(meta);
+                                    }
+                                })();
+                            }
+
+                            if (cmd.name == 'clear') {
+                                $('.projects, .tweets, .intro, .meta').hide();
+                                term.clear();
+                            }
+
+                            if (cmd.name == 'help') {
+                                term.echo(`Use the following commands to navigate 
+[[b;#E58645;]projects]
+[[b;#E58645;]about]  
+[[b;#E58645;]twitter] 
+[[b;#E58645;]meta] 
+[[b;#E58645;]music] 
+[[b;#E58645;]github]`);
+                            }
+                        }, {
+                            greetings: '[[b;#BF4A38;]Welcome to samgoddard.co.uk - use help for available commands]',
+                            name: 'js_demo',
+                            prompt: '➜  samgoddard-git-api git:(master) ',
+                            clear: false
                         });
                     });
-
-                    function requestJSON(url, callback) {
-                        $.ajax({
-                            url: url,
-                            complete: function(xhr) {
-                            callback.call(null, xhr.responseJSON);
-                        }
-                    });
-                }
                 </script>
-
-                </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

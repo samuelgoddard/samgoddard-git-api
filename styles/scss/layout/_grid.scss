@@ -2,15 +2,9 @@
 // Grid System
 //**
 
-// Global Container
-body {
-  background: #263238;
-}
-.container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left:  1.55rem;
-  padding-right: 1.55rem;
+.container, .terminal-output, .cmd {
+  margin-right: 1em;
+  margin-left: 1em;
   clear: both;
 
   @media (min-width: $tablet-break) {
@@ -23,7 +17,6 @@ body {
     width: $large-desktop-break;
   }
 }
-
 
 /* $. Core
 \*----------------------------------------------------------------*/

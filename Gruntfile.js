@@ -24,7 +24,7 @@ module.exports = function(grunt) {
           src : 'styles/css/style.css'
         },
         options: {
-          proxy: "stripped.dev"
+          proxy: "samgoddard.dev"
         }
       }
     }

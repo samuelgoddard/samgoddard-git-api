@@ -2,19 +2,22 @@
 // Grid System
 //**
 
-.container, .terminal-output, .cmd {
-  margin-right: 1em;
-  margin-left: 1em;
+.container {
+  margin-right: 0.25em;
+  margin-left: 0.25em;
+  padding-right: 0.75em;
+  padding-left: 0.75em;
   clear: both;
 
   @media (min-width: $tablet-break) {
-    width: $tablet-break;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+    padding-right: 1.25em;
+    padding-left: 1.25em;
   }
   @media (min-width: $desktop-break) {
-    width: $desktop-break;
   }
   @media (min-width: $large-desktop-break) {
-    width: $large-desktop-break;
   }
 }
 

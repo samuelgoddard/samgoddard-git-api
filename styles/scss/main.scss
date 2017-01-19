@@ -36,7 +36,17 @@
         font-size: 14px;
         color: grey;
         display: block;
+        max-height: 100vh;
     } 
+
+    .app {
+        max-height: 97vh;
+    }
+
+    ::-webkit-scrollbar {
+            width: 0px;  /* remove scrollbar space */
+            background: transparent;  /* optional: just make scrollbar invisible */
+        }
     
     .string-indent {
         display: block;
@@ -69,6 +79,7 @@
     a {
         border-radius: 3px;
         padding: 1px 3px;
+        color: $sam-red;
         text-decoration: none;
     }
     
@@ -84,6 +95,11 @@
     a.u-c--sam-blue:hover {
         color: #22343E;
         background: #588AA0;
+    }
+
+    a.u-c--sam-red:hover {
+        color: #22343E;
+        background: $sam-red;
     }
 
     ul.projects {
@@ -346,17 +362,9 @@
     .cmd div::-moz-selection,
     .cmd > span::-moz-selection,
     .cmd .prompt span::-moz-selection {
-        background-color: grey;
-        color: #000;
+        background-color: rgba(0,0,0,0.2);
+        color: grey;
     }
-    /* this don't work in Chrome
-    .terminal tr td::-moz-selection {
-        border-color: #000;
-    }
-    .terminal tr td::selection {
-        border-color: #000;
-    }
-    */
     
     .terminal h1::selection,
     .terminal h2::selection,
@@ -372,8 +380,8 @@
     .cmd div::selection,
     .cmd > span::selection,
     .cmd .prompt span::selection {
-        background-color: grey;
-        color: #000;
+        background-color: rgba(0,0,0,0.2);
+        color: grey;
     }
     
     .terminal .terminal-output div.error,
